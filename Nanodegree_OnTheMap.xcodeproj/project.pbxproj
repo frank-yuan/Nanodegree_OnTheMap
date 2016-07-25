@@ -1,0 +1,401 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		943849351D4665F00041D6CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849341D4665F00041D6CF /* AppDelegate.swift */; };
+		943849371D4665F00041D6CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849361D4665F00041D6CF /* ViewController.swift */; };
+		9438493A1D4665F00041D6CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943849381D4665F00041D6CF /* Main.storyboard */; };
+		9438493F1D4665F10041D6CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9438493D1D4665F10041D6CF /* LaunchScreen.storyboard */; };
+		9438494A1D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849491D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		943849461D4665F10041D6CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943849291D4665F00041D6CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 943849301D4665F00041D6CF;
+			remoteInfo = Nanodegree_OnTheMap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		943849311D4665F00041D6CF /* Nanodegree_OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		943849341D4665F00041D6CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		943849361D4665F00041D6CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		943849391D4665F00041D6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9438493E1D4665F10041D6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		943849401D4665F10041D6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		943849451D4665F10041D6CF /* Nanodegree_OnTheMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Nanodegree_OnTheMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		943849491D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nanodegree_OnTheMapTests.swift; sourceTree = "<group>"; };
+		9438494B1D4665F10041D6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9438492E1D4665F00041D6CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		943849421D4665F10041D6CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		943849281D4665F00041D6CF = {
+			isa = PBXGroup;
+			children = (
+				943849331D4665F00041D6CF /* Nanodegree_OnTheMap */,
+				943849481D4665F10041D6CF /* Nanodegree_OnTheMapTests */,
+				943849321D4665F00041D6CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		943849321D4665F00041D6CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				943849311D4665F00041D6CF /* Nanodegree_OnTheMap.app */,
+				943849451D4665F10041D6CF /* Nanodegree_OnTheMapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		943849331D4665F00041D6CF /* Nanodegree_OnTheMap */ = {
+			isa = PBXGroup;
+			children = (
+				943849341D4665F00041D6CF /* AppDelegate.swift */,
+				943849361D4665F00041D6CF /* ViewController.swift */,
+				943849381D4665F00041D6CF /* Main.storyboard */,
+				9438493D1D4665F10041D6CF /* LaunchScreen.storyboard */,
+				943849401D4665F10041D6CF /* Info.plist */,
+			);
+			path = Nanodegree_OnTheMap;
+			sourceTree = "<group>";
+		};
+		943849481D4665F10041D6CF /* Nanodegree_OnTheMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				943849491D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift */,
+				9438494B1D4665F10041D6CF /* Info.plist */,
+			);
+			path = Nanodegree_OnTheMapTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		943849301D4665F00041D6CF /* Nanodegree_OnTheMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9438494E1D4665F10041D6CF /* Build configuration list for PBXNativeTarget "Nanodegree_OnTheMap" */;
+			buildPhases = (
+				9438492D1D4665F00041D6CF /* Sources */,
+				9438492E1D4665F00041D6CF /* Frameworks */,
+				9438492F1D4665F00041D6CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nanodegree_OnTheMap;
+			productName = Nanodegree_OnTheMap;
+			productReference = 943849311D4665F00041D6CF /* Nanodegree_OnTheMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		943849441D4665F10041D6CF /* Nanodegree_OnTheMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 943849511D4665F10041D6CF /* Build configuration list for PBXNativeTarget "Nanodegree_OnTheMapTests" */;
+			buildPhases = (
+				943849411D4665F10041D6CF /* Sources */,
+				943849421D4665F10041D6CF /* Frameworks */,
+				943849431D4665F10041D6CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				943849471D4665F10041D6CF /* PBXTargetDependency */,
+			);
+			name = Nanodegree_OnTheMapTests;
+			productName = Nanodegree_OnTheMapTests;
+			productReference = 943849451D4665F10041D6CF /* Nanodegree_OnTheMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		943849291D4665F00041D6CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "frank-yuan";
+				TargetAttributes = {
+					943849301D4665F00041D6CF = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					943849441D4665F10041D6CF = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 943849301D4665F00041D6CF;
+					};
+				};
+			};
+			buildConfigurationList = 9438492C1D4665F00041D6CF /* Build configuration list for PBXProject "Nanodegree_OnTheMap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 943849281D4665F00041D6CF;
+			productRefGroup = 943849321D4665F00041D6CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				943849301D4665F00041D6CF /* Nanodegree_OnTheMap */,
+				943849441D4665F10041D6CF /* Nanodegree_OnTheMapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9438492F1D4665F00041D6CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9438493F1D4665F10041D6CF /* LaunchScreen.storyboard in Resources */,
+				9438493A1D4665F00041D6CF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		943849431D4665F10041D6CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9438492D1D4665F00041D6CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				943849371D4665F00041D6CF /* ViewController.swift in Sources */,
+				943849351D4665F00041D6CF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		943849411D4665F10041D6CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9438494A1D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		943849471D4665F10041D6CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 943849301D4665F00041D6CF /* Nanodegree_OnTheMap */;
+			targetProxy = 943849461D4665F10041D6CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		943849381D4665F00041D6CF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				943849391D4665F00041D6CF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9438493D1D4665F10041D6CF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9438493E1D4665F10041D6CF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9438494C1D4665F10041D6CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9438494D1D4665F10041D6CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9438494F1D4665F10041D6CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Nanodegree_OnTheMap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-OnTheMap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		943849501D4665F10041D6CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Nanodegree_OnTheMap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-OnTheMap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		943849521D4665F10041D6CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Nanodegree_OnTheMapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-OnTheMapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nanodegree_OnTheMap.app/Nanodegree_OnTheMap";
+			};
+			name = Debug;
+		};
+		943849531D4665F10041D6CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Nanodegree_OnTheMapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-OnTheMapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nanodegree_OnTheMap.app/Nanodegree_OnTheMap";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9438492C1D4665F00041D6CF /* Build configuration list for PBXProject "Nanodegree_OnTheMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9438494C1D4665F10041D6CF /* Debug */,
+				9438494D1D4665F10041D6CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9438494E1D4665F10041D6CF /* Build configuration list for PBXNativeTarget "Nanodegree_OnTheMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9438494F1D4665F10041D6CF /* Debug */,
+				943849501D4665F10041D6CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		943849511D4665F10041D6CF /* Build configuration list for PBXNativeTarget "Nanodegree_OnTheMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				943849521D4665F10041D6CF /* Debug */,
+				943849531D4665F10041D6CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 943849291D4665F00041D6CF /* Project object */;
+}
