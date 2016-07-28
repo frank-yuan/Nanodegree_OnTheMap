@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		943849351D4665F00041D6CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849341D4665F00041D6CF /* AppDelegate.swift */; };
-		943849371D4665F00041D6CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849361D4665F00041D6CF /* ViewController.swift */; };
 		9438493A1D4665F00041D6CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943849381D4665F00041D6CF /* Main.storyboard */; };
 		9438493F1D4665F10041D6CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9438493D1D4665F10041D6CF /* LaunchScreen.storyboard */; };
 		9438494A1D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849491D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift */; };
 		94453CC81D471ECA00D2A8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94453CC71D471ECA00D2A8FC /* Assets.xcassets */; };
 		94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CC91D4746DA00D2A8FC /* Constants.swift */; };
 		94453CCE1D474A0000D2A8FC /* HttpEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */; };
-		9465FEFD1D47B0DA00C4244F /* UDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* UDTableViewController.swift */; };
+		9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */; };
 		9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */; };
 		9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FF011D47C24E00C4244F /* LoginViewController.swift */; };
 		9474280E1D4854E200B8F9A8 /* AppEndPointConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */; };
 		947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */; };
+		949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E111D4A54680021E93A /* LocationViewController.swift */; };
+		949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */; };
+		949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E151D4A5BE30021E93A /* UserLocationData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,6 @@
 /* Begin PBXFileReference section */
 		943849311D4665F00041D6CF /* Nanodegree_OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		943849341D4665F00041D6CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		943849361D4665F00041D6CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		943849391D4665F00041D6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9438493E1D4665F10041D6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		943849401D4665F10041D6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,11 +46,14 @@
 		94453CC71D471ECA00D2A8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94453CC91D4746DA00D2A8FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpEndPoint.swift; sourceTree = "<group>"; };
-		9465FEFC1D47B0DA00C4244F /* UDTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDTableViewController.swift; sourceTree = "<group>"; };
+		9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLocationViewController.swift; sourceTree = "<group>"; };
 		9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		9465FF011D47C24E00C4244F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEndPointConfig.swift; sourceTree = "<group>"; };
 		9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		949B8E111D4A54680021E93A /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationViewController.swift; sourceTree = "<group>"; };
+		949B8E151D4A5BE30021E93A /* UserLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				94453CC91D4746DA00D2A8FC /* Constants.swift */,
 				94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */,
 				9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */,
+				949B8E151D4A5BE30021E93A /* UserLocationData.swift */,
 			);
 			path = Nanodegree_OnTheMap;
 			sourceTree = "<group>";
@@ -115,9 +120,10 @@
 		94453CCB1D47473600D2A8FC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				943849361D4665F00041D6CF /* ViewController.swift */,
-				9465FEFC1D47B0DA00C4244F /* UDTableViewController.swift */,
+				9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */,
 				9465FF011D47C24E00C4244F /* LoginViewController.swift */,
+				949B8E111D4A54680021E93A /* LocationViewController.swift */,
+				949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -243,11 +249,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */,
-				943849371D4665F00041D6CF /* ViewController.swift in Sources */,
 				947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */,
 				9474280E1D4854E200B8F9A8 /* AppEndPointConfig.swift in Sources */,
+				949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */,
 				943849351D4665F00041D6CF /* AppDelegate.swift in Sources */,
-				9465FEFD1D47B0DA00C4244F /* UDTableViewController.swift in Sources */,
+				949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */,
+				949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */,
+				9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */,
 				94453CCE1D474A0000D2A8FC /* HttpEndPoint.swift in Sources */,
 				9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */,
 				94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */,

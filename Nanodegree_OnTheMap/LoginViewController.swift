@@ -39,6 +39,7 @@ class LoginViewController: UIViewController {
     
     // MARK: IBAction
     @IBAction func onLogin() {
+        
         func displayError(errorTitle: String, errorMessage: String? = nil) {
             self.setUIEnabled(true)
             let alertView = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
@@ -80,6 +81,12 @@ class LoginViewController: UIViewController {
                         displayError("Unknown error")
                         return
                     }
+                    guard let userId = account!["key"] as? String else {
+                        displayError("Cannot find user Id")
+                        return
+                    }
+                    
+                    UserLocationData.setUserId(userId)
                     self.setUIEnabled(true)
                     let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
                     self.presentViewController(controller, animated: true, completion: nil)
@@ -95,7 +102,6 @@ class LoginViewController: UIViewController {
                     return
                 }
             }
-            
         }
     }
     
