@@ -52,13 +52,13 @@ class HttpEndPoint : NSObject {
             
         } else {
             performUIUpdatesOnMain {
-                completeHandler(nil, error)
+                completeHandler(data, error)
             }
         }
     }
     
     
-    func get(parameters:[String:AnyObject], withPathExtension: String? = nil, withHeaderParams:[String:String]? = nil, completeHandler:(NSData?, NetworkError?) -> Void) -> Void {
+    func get(parameters:[String:AnyObject], withPathExtension: String? = nil, withHeaderParams:[String:String]? = nil, completeHandler:(NSData?, NetworkError) -> Void) -> Void {
 
         
         if let url = buildURL(parameters, withPathExtension: withPathExtension) {
@@ -73,7 +73,7 @@ class HttpEndPoint : NSObject {
         }
     }
     
-    func post(withHttpBody: AnyObject? = nil, withPathExtension: String? = nil, withHeaderParams:[String:String]? = nil, completeHandler:(NSData?, NetworkError?) -> Void) -> Void {
+    func post(withHttpBody: AnyObject? = nil, withPathExtension: String? = nil, withHeaderParams:[String:String]? = nil, completeHandler:(NSData?, NetworkError) -> Void) -> Void {
         
         if let url = buildURL(nil, withPathExtension: withPathExtension) {
             let request = NSMutableURLRequest(URL: url)
@@ -118,7 +118,7 @@ class HttpEndPoint : NSObject {
         return components.URL
     }
     
-    private func performRequest(request:NSURLRequest, completeHandler:(NSData?, NetworkError?) -> Void) -> Void {
+    private func performRequest(request:NSURLRequest, completeHandler:(NSData?, NetworkError) -> Void) -> Void {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             
             /* GUARD: Was there an error? */
@@ -134,7 +134,7 @@ class HttpEndPoint : NSObject {
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 print("Your request returned a status code other than 2xx!")
                 performUIUpdatesOnMain {
-                    completeHandler(nil, NetworkError.ResponseWrongStatus)
+                    completeHandler(data, NetworkError.ResponseWrongStatus)
                 }
                 return
             }

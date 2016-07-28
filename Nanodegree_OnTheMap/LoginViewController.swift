@@ -62,24 +62,40 @@ class LoginViewController: UIViewController {
         let endPoint = HttpEndPoint(config: UdacityEndPointConfig())
         
         endPoint.post(httpBody, withPathExtension: "session", withHeaderParams: header) { (data, error) in
-            HttpEndPoint.responseAdapterJSON(data, error: error, completeHandler: { (result, error) in
-                guard error == NetworkError.NoError else {
-                    displayError("Network Error!")
-                    return
-                }
-                guard let account = result!["account"] else {
-                    displayError("Cannot found account")
-                    return
-                }
-                guard let registered = account!["registered"] as? Bool where registered else {
-                    displayError("Cannot found account")
-                    return
-                }
-                self.setUIEnabled(true)
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
-                self.presentViewController(controller, animated: true, completion: nil)
+            // Move five character ahead
+            if let data = data where error == NetworkError.NoError{
+                let data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                HttpEndPoint.responseAdapterJSON(data, error: error, completeHandler: { (result, error) in
+                    guard error == NetworkError.NoError else {
+                        if (error == NetworkError.ParseJSONError) {
+                            displayError("Result cannot be parsed!")
+                        }
+                        return
+                    }
+                    guard let account = result!["account"] else {
+                        displayError("Cannot found account in result")
+                        return
+                    }
+                    guard let registered = account!["registered"] as? Bool where registered else {
+                        displayError("Unknown error")
+                        return
+                    }
+                    self.setUIEnabled(true)
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
+                    self.presentViewController(controller, animated: true, completion: nil)
 
-            })
+                })
+            } else {
+                switch error {
+                case .ResponseWrongStatus:
+                    displayError("Account not found or invalid credentials.")
+                    return
+                default:
+                    displayError("Unknown error.")
+                    return
+                }
+            }
+            
         }
     }
     
