@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
         }
         
         setUIEnabled(false)
+        
         guard let email = textFieldEmail.text where email.characters.count > 0 else {
             displayError("Email cannot be empty")
             return
@@ -58,48 +59,55 @@ class LoginViewController: UIViewController {
             return
         }
         
-        let header = ["Accept":"application/json", "Content-Type":"application/json" ]
-        let httpBody = ["udacity":["username":email, "password":password]]
-        let endPoint = HttpEndPoint(config: UdacityEndPointConfig())
-        
-        endPoint.post(httpBody, withPathExtension: "session", withHeaderParams: header) { (data, error) in
-            // Move five character ahead
-            if let data = data where error == NetworkError.NoError{
-                let data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-                HttpEndPoint.responseAdapterJSON(data, error: error, completeHandler: { (result, error) in
-                    guard error == NetworkError.NoError else {
-                        if (error == NetworkError.ParseJSONError) {
-                            displayError("Result cannot be parsed!")
+        if let url = HttpServiceHelper.buildURL(UdacityServiceConfig(), withPathExtension: "session", queryItems: nil) {
+            
+            let request = HttpRequest(url: url, method: .POST)
+            
+            request.addHeader(["Accept":"application/json", "Content-Type":"application/json" ])
+            request.addData("udacity", value: ["username":email, "password":password])
+            
+            HttpService.service(request) { (data, error) in
+                // Move five character ahead
+                if let data = data where error == NetworkError.NoError{
+                    let data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                    HttpServiceHelper.parseJSONResponse(data, error: error) { (result, error) in
+                        guard error == NetworkError.NoError else {
+                            if (error == NetworkError.ParseJSONError) {
+                                displayError("Result cannot be parsed!")
+                            }
+                            return
                         }
+                        
+                        guard let account = result!["account"] else {
+                            displayError("Cannot found account in result")
+                            return
+                        }
+                        
+                        guard let registered = account!["registered"] as? Bool where registered else {
+                            displayError("Unknown error")
+                            return
+                        }
+                        
+                        guard let userId = account!["key"] as? String else {
+                            displayError("Cannot find user Id")
+                            return
+                        }
+                        
+                        UserLocationData.setUserId(userId)
+                        self.setUIEnabled(true)
+                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
+                        self.presentViewController(controller, animated: true, completion: nil)
+                        
+                    }
+                } else {
+                    switch error {
+                    case .ResponseWrongStatus:
+                        displayError("Account not found or invalid credentials.")
+                        return
+                    default:
+                        displayError("Unknown error.")
                         return
                     }
-                    guard let account = result!["account"] else {
-                        displayError("Cannot found account in result")
-                        return
-                    }
-                    guard let registered = account!["registered"] as? Bool where registered else {
-                        displayError("Unknown error")
-                        return
-                    }
-                    guard let userId = account!["key"] as? String else {
-                        displayError("Cannot find user Id")
-                        return
-                    }
-                    
-                    UserLocationData.setUserId(userId)
-                    self.setUIEnabled(true)
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
-                    self.presentViewController(controller, animated: true, completion: nil)
-
-                })
-            } else {
-                switch error {
-                case .ResponseWrongStatus:
-                    displayError("Account not found or invalid credentials.")
-                    return
-                default:
-                    displayError("Unknown error.")
-                    return
                 }
             }
         }

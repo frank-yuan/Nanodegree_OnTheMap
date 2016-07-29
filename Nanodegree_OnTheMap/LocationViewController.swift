@@ -26,6 +26,29 @@ class LocationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if UserLocationData.getInstance().locations.count == 0 {
+            // retrieve locations from server
+            if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["limit":100]) {
+                let request = HttpRequest(url: url)
+                request.addHeader([Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
+                    Constant.ParseApi.apiKeyKey: Constant.ParseApi.apiKeyValue])
+                
+                HttpService.service(request) { (data, error) in
+                    HttpServiceHelper.parseJSONResponse(data, error: error){ (result, networkError) in
+                        if let result = result , resultArray = result["results"] as? [AnyObject] {
+                            print (resultArray[0])
+                        }
+                        else
+                        {
+                            let alertView = UIAlertController(title: "Loading parse data fail!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alertView, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +59,7 @@ class LocationViewController: UIViewController {
 
     
     func logOut() {
+        UserLocationData.reset()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
