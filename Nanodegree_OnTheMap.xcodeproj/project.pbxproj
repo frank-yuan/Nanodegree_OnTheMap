@@ -13,15 +13,16 @@
 		9438494A1D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849491D4665F10041D6CF /* Nanodegree_OnTheMapTests.swift */; };
 		94453CC81D471ECA00D2A8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94453CC71D471ECA00D2A8FC /* Assets.xcassets */; };
 		94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CC91D4746DA00D2A8FC /* Constants.swift */; };
-		94453CCE1D474A0000D2A8FC /* HttpEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */; };
+		94453CCE1D474A0000D2A8FC /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CCD1D4749FF00D2A8FC /* HttpService.swift */; };
 		9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */; };
 		9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */; };
 		9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FF011D47C24E00C4244F /* LoginViewController.swift */; };
-		9474280E1D4854E200B8F9A8 /* AppEndPointConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */; };
+		9474280E1D4854E200B8F9A8 /* AppServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280D1D4854E200B8F9A8 /* AppServiceConfig.swift */; };
 		947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */; };
 		949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E111D4A54680021E93A /* LocationViewController.swift */; };
 		949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */; };
 		949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E151D4A5BE30021E93A /* UserLocationData.swift */; };
+		949B8E181D4AF79B0021E93A /* HttpServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E171D4AF79B0021E93A /* HttpServiceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,15 +46,16 @@
 		9438494B1D4665F10041D6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94453CC71D471ECA00D2A8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94453CC91D4746DA00D2A8FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpEndPoint.swift; sourceTree = "<group>"; };
+		94453CCD1D4749FF00D2A8FC /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLocationViewController.swift; sourceTree = "<group>"; };
 		9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		9465FF011D47C24E00C4244F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEndPointConfig.swift; sourceTree = "<group>"; };
+		9474280D1D4854E200B8F9A8 /* AppServiceConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServiceConfig.swift; sourceTree = "<group>"; };
 		9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		949B8E111D4A54680021E93A /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationViewController.swift; sourceTree = "<group>"; };
 		949B8E151D4A5BE30021E93A /* UserLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationData.swift; sourceTree = "<group>"; };
+		949B8E171D4AF79B0021E93A /* HttpServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpServiceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,11 @@
 			children = (
 				9465FEFE1D47BE2900C4244F /* Supporting Files */,
 				94453CCC1D47474300D2A8FC /* Assets */,
+				949B8E191D4AF7BA0021E93A /* Network */,
 				94453CCB1D47473600D2A8FC /* View Controllers */,
 				943849341D4665F00041D6CF /* AppDelegate.swift */,
 				943849401D4665F10041D6CF /* Info.plist */,
 				94453CC91D4746DA00D2A8FC /* Constants.swift */,
-				94453CCD1D4749FF00D2A8FC /* HttpEndPoint.swift */,
-				9474280D1D4854E200B8F9A8 /* AppEndPointConfig.swift */,
 				949B8E151D4A5BE30021E93A /* UserLocationData.swift */,
 			);
 			path = Nanodegree_OnTheMap;
@@ -145,6 +146,16 @@
 				9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		949B8E191D4AF7BA0021E93A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9474280D1D4854E200B8F9A8 /* AppServiceConfig.swift */,
+				94453CCD1D4749FF00D2A8FC /* HttpService.swift */,
+				949B8E171D4AF79B0021E93A /* HttpServiceHelper.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,15 +261,16 @@
 			files = (
 				9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */,
 				947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */,
-				9474280E1D4854E200B8F9A8 /* AppEndPointConfig.swift in Sources */,
+				9474280E1D4854E200B8F9A8 /* AppServiceConfig.swift in Sources */,
 				949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */,
 				943849351D4665F00041D6CF /* AppDelegate.swift in Sources */,
 				949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */,
 				949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */,
 				9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */,
-				94453CCE1D474A0000D2A8FC /* HttpEndPoint.swift in Sources */,
+				94453CCE1D474A0000D2A8FC /* HttpService.swift in Sources */,
 				9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */,
 				94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */,
+				949B8E181D4AF79B0021E93A /* HttpServiceHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

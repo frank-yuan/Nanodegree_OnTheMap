@@ -8,3 +8,13 @@
 
 
 
+struct Constant {
+    
+    struct ParseApi {
+        static let applicationIdKey = "X-Parse-Application-Id"
+        static let apiKeyKey = "X-Parse-REST-API-Key"
+        static let applicationIdValue = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let apiKeyValue = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+    }
+    
+}

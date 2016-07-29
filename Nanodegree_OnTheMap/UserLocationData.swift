@@ -26,9 +26,9 @@ struct UserLocationData {
         return sharedData
     }
     
-    mutating func reset() {
-        userId = ""
-        locations.removeAll()
+    static func reset() {
+        sharedData.userId = ""
+        sharedData.locations.removeAll()
     }
     
     static func setUserId(uid:String) {

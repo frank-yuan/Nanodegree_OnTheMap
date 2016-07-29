@@ -6,8 +6,14 @@
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
 
-struct UdacityEndPointConfig : EndPointConfig {
+struct UdacityServiceConfig : ServiceConfig {
     var ApiScheme: String { return "https" }
     var ApiHost: String { return "www.udacity.com" }
     var ApiPath: String { return "/api/" }
+}
+
+struct ParseServiceConfig : ServiceConfig {
+    var ApiScheme: String { return "https" }
+    var ApiHost: String { return "api.parse.com" }
+    var ApiPath: String { return "/1/classes/" }
 }
