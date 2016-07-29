@@ -188,6 +188,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PEW-Vl-fwP" id="1gN-g5-T3y"/>
+                                    <outlet property="delegate" destination="PEW-Vl-fwP" id="zjO-IX-eSC"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,6 +203,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AvL-gR-ntA"/>
+                    <connections>
+                        <outlet property="tableView" destination="eqr-5A-cgM" id="DBp-Gh-VaQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbU-0W-QHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

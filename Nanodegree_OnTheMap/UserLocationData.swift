@@ -10,10 +10,18 @@ import UIKit
 
 struct UserLocationData {
     struct UserLocation {
-        let name:String
+        let firstName:String
+        let lastName:String
         let url:String
         let latitude:CGFloat
         let longitude:CGFloat
+        init(object:AnyObject) {
+            firstName = object["firstName"] as! String
+            lastName = object["lastName"] as! String
+            url = object["mediaURL"] as! String
+            latitude = object["latitude"] as! CGFloat
+            longitude = object["longitude"] as! CGFloat
+        }
     }
     
     var userId : String

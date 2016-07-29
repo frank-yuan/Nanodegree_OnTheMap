@@ -10,6 +10,9 @@ import UIKit
 
 class TableLocationViewController: LocationViewController, UITableViewDelegate, UITableViewDataSource {
     let tableViewCellIdentifier = "locationCell"
+    
+    @IBOutlet weak var tableView:UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,21 +29,21 @@ class TableLocationViewController: LocationViewController, UITableViewDelegate, 
     }
 
     // MARK: - Table view data source
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return UserLocationData.getInstance().locations.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier, forIndexPath: indexPath)
+        let location = UserLocationData.getInstance().locations[indexPath.row]
+        cell.textLabel?.text = location.lastName + " " + location.firstName
+        return cell
     }
     
+    override func onDataReload() {
+        self.tableView.reloadData()
+    }
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

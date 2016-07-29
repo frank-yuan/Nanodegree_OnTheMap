@@ -37,7 +37,12 @@ class LocationViewController: UIViewController {
                 HttpService.service(request) { (data, error) in
                     HttpServiceHelper.parseJSONResponse(data, error: error){ (result, networkError) in
                         if let result = result , resultArray = result["results"] as? [AnyObject] {
-                            print (resultArray[0])
+                            for item in resultArray {
+                                UserLocationData.appendLocation(UserLocationData.UserLocation(object: item))
+                            }
+                            performUIUpdatesOnMain({ 
+                                self.onDataReload()
+                            })
                         }
                         else
                         {
@@ -49,6 +54,9 @@ class LocationViewController: UIViewController {
                 }
             }
         }
+        else {
+            self.onDataReload()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +64,9 @@ class LocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func onDataReload() {
+        
+    }
 
     
     func logOut() {
