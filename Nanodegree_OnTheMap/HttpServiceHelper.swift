@@ -42,7 +42,7 @@ struct HttpServiceHelper {
         return components.URL
     }
     
-    static func parseJSONResponse(data:NSData?, error:NetworkError?, completeHandler:(AnyObject?, NetworkError?) -> Void) -> Void {
+    static func parseJSONResponse(data:NSData?, error:NetworkError, completeHandler:(AnyObject?, NetworkError) -> Void) -> Void {
         
         if (error == NetworkError.NoError) {
             /* Parse the data */

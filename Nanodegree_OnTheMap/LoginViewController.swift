@@ -59,58 +59,45 @@ class LoginViewController: UIViewController {
             return
         }
         
-        if let url = HttpServiceHelper.buildURL(UdacityServiceConfig(), withPathExtension: "session", queryItems: nil) {
-            
-            let request = HttpRequest(url: url, method: .POST)
-            
-            request.addHeader(["Accept":"application/json", "Content-Type":"application/json" ])
-            request.addData("udacity", value: ["username":email, "password":password])
-            
-            HttpService.service(request) { (data, error) in
-                // Move five character ahead
-                if let data = data where error == NetworkError.NoError{
-                    let data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-                    HttpServiceHelper.parseJSONResponse(data, error: error) { (result, error) in
-                        guard error == NetworkError.NoError else {
-                            if (error == NetworkError.ParseJSONError) {
-                                displayError("Result cannot be parsed!")
-                            }
-                            return
-                        }
-                        
-                        guard let account = result!["account"] else {
-                            displayError("Cannot found account in result")
-                            return
-                        }
-                        
-                        guard let registered = account!["registered"] as? Bool where registered else {
-                            displayError("Unknown error")
-                            return
-                        }
-                        
-                        guard let userId = account!["key"] as? String else {
-                            displayError("Cannot find user Id")
-                            return
-                        }
-                        
-                        UserLocationData.setUserId(userId)
-                        self.setUIEnabled(true)
-                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
-                        self.presentViewController(controller, animated: true, completion: nil)
-                        
-                    }
-                } else {
-                    switch error {
-                    case .ResponseWrongStatus:
-                        displayError("Account not found or invalid credentials.")
-                        return
-                    default:
-                        displayError("Unknown error.")
-                        return
-                    }
+        udacityAPI.authenticate(email, password:password) { (result, error) in
+            guard error == NetworkError.NoError else {
+                var errorMsg = ""
+                switch error {
+                case NetworkError.ParseJSONError:
+                    errorMsg = "Result cannot be parsed!"
+                case NetworkError.ResponseWrongStatus:
+                    errorMsg = "Account not found or invalid credentials."
+                default:
+                    errorMsg = "Network error."
                 }
+                displayError(errorMsg)
+                return
             }
+            
+            guard let account = result!["account"] else {
+                displayError("Cannot found account in result")
+                return
+            }
+            
+            guard let registered = account!["registered"] as? Bool where registered else {
+                displayError("Unknown error")
+                return
+            }
+            
+            guard let userId = account!["key"] as? String else {
+                displayError("Cannot find user Id")
+                return
+            }
+            
+            UserLocationData.setUserId(userId)
+            self.setUIEnabled(true)
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
+            self.presentViewController(controller, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func onSignup() {
+        UIApplication.sharedApplication().openURL(NSURL(string:"https://www.udacity.com/account/auth#!/signup")!)
     }
     
     func subscribeToKeyboardNotifications() {

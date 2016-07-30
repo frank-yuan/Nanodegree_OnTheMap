@@ -29,28 +29,21 @@ class LocationViewController: UIViewController {
         
         if UserLocationData.getInstance().locations.count == 0 {
             // retrieve locations from server
-            if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["limit":100]) {
-                let request = HttpRequest(url: url)
-                request.addHeader([Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
-                    Constant.ParseApi.apiKeyKey: Constant.ParseApi.apiKeyValue])
+            parseAPI.getStudentsLocation(){ (result, error) in
                 
-                HttpService.service(request) { (data, error) in
-                    HttpServiceHelper.parseJSONResponse(data, error: error){ (result, networkError) in
-                        if let result = result , resultArray = result["results"] as? [AnyObject] {
-                            for item in resultArray {
-                                UserLocationData.appendLocation(UserLocationData.UserLocation(object: item))
-                            }
-                            performUIUpdatesOnMain({ 
-                                self.onDataReload()
-                            })
-                        }
-                        else
-                        {
-                            let alertView = UIAlertController(title: "Loading parse data fail!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-                            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                            self.presentViewController(alertView, animated: true, completion: nil)
-                        }
+                if let result = result , resultArray = result["results"] as? [AnyObject] {
+                    for item in resultArray {
+                        UserLocationData.appendLocation(UserLocationData.UserData(object: item))
                     }
+                    performUIUpdatesOnMain({
+                        self.onDataReload()
+                    })
+                }
+                else
+                {
+                    let alertView = UIAlertController(title: "Loading parse data fail!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alertView, animated: true, completion: nil)
                 }
             }
         }
@@ -64,14 +57,31 @@ class LocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setUIEnabled(enabled: Bool) {
+        self.navigationItem.leftBarButtonItem?.enabled = enabled
+        //self.navigationItem.rightBarButtonItem?.enabled = enabled
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.enabled = enabled
+        }
+    }
+    
     func onDataReload() {
         
     }
 
     
     func logOut() {
-        UserLocationData.reset()
-        dismissViewControllerAnimated(true, completion: nil)
+        setUIEnabled(false)
+        udacityAPI.logout() { (result, error) in
+            performUIUpdatesOnMain(){
+                if error != NetworkError.NoError {
+                    UserLocationData.reset()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                self.setUIEnabled(true)
+            }
+            
+        }
     }
     
     func refreshData() {

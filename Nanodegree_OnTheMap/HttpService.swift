@@ -59,7 +59,7 @@ private extension HttpRequest {
         request.HTTPMethod = method.rawValue
         
         for headerEntry in header {
-            request.addValue(headerEntry.1, forHTTPHeaderField: headerEntry.0)
+            request.setValue(headerEntry.1, forHTTPHeaderField: headerEntry.0)
         }
         
         if data.count > 0 {
