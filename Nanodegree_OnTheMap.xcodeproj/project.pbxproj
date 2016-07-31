@@ -15,7 +15,6 @@
 		94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CC91D4746DA00D2A8FC /* Constants.swift */; };
 		94453CCE1D474A0000D2A8FC /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CCD1D4749FF00D2A8FC /* HttpService.swift */; };
 		94507D191D4E3D69007FAAAD /* LocationEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */; };
-		94507D1B1D4E411C007FAAAD /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */; };
 		9465FEFD1D47B0DA00C4244F /* TableUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* TableUsersViewController.swift */; };
 		9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */; };
 		9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FF011D47C24E00C4244F /* LoginViewController.swift */; };
@@ -52,7 +51,6 @@
 		94453CC91D4746DA00D2A8FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94453CCD1D4749FF00D2A8FC /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationEditViewController.swift; sourceTree = "<group>"; };
-		94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
 		9465FEFC1D47B0DA00C4244F /* TableUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableUsersViewController.swift; sourceTree = "<group>"; };
 		9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		9465FF011D47C24E00C4244F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				949B8E131D4A55AB0021E93A /* MapUsersViewController.swift */,
 				949B8E111D4A54680021E93A /* UsersViewController.swift */,
 				94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */,
-				94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -302,7 +299,6 @@
 				9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */,
 				94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */,
 				949B8E181D4AF79B0021E93A /* HttpServiceHelper.swift in Sources */,
-				94507D1B1D4E411C007FAAAD /* LocationMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

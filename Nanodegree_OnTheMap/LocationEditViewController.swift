@@ -7,30 +7,40 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationEditViewController: UIViewController {
 
     @IBOutlet weak var navBar : UINavigationBar!
+    @IBOutlet weak var stackView : UIStackView!
+    @IBOutlet weak var locationTextField : UITextField!
+    @IBOutlet weak var linkTextField : UITextField!
+    @IBOutlet weak var mapView : MKMapView!
+    @IBOutlet weak var button : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(LocationEditViewController.onCancel))
-
+        configureUI(false)
         // Do any additional setup after loading the view.
     }
     
-    func onCancel() {
+    @IBAction func onCancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func onFound() {
-        dismissViewControllerAnimated(false) { () -> Void in
-            if let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LocationMapViewController") {
-                self.presentViewController(vc, animated: false, completion: nil)
-            }
-        }
+        configureUI(true)
         
     }
+    
+    func configureUI(enableMapView:Bool) {
+        stackView.hidden = enableMapView
+        locationTextField.hidden = enableMapView
+        linkTextField.hidden = !enableMapView
+        mapView.hidden = !enableMapView
+    }
+    
+    
     /*
     // MARK: - Navigation
 
