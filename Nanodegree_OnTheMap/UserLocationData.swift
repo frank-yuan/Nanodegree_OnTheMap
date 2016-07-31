@@ -5,7 +5,6 @@
 //  Created by Xuan Yuan (Frank) on 7/28/16.
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
-
 import UIKit
 
 struct UserLocationData {
@@ -39,6 +38,7 @@ struct UserLocationData {
     static func reset() {
         sharedData.userId = ""
         sharedData.locations.removeAll()
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
     }
     
     static func setUserId(uid:String) {
@@ -47,5 +47,19 @@ struct UserLocationData {
     
     static func appendLocation(location:UserData) {
         sharedData.locations.append(location)
+    }
+    
+    static func save() {
+        if sharedData.userId.characters.count > 0 {
+            NSUserDefaults.standardUserDefaults().setValue(sharedData.userId, forKeyPath: "userId")
+        }
+    }
+    
+    static func load() -> Bool {
+        if let userId = NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String {
+            setUserId(userId)
+            return true;
+        }
+        return false
     }
 }

@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
+    @IBOutlet weak var keepMeLoggedIn: UISwitch!
     
     var viewOriginY:CGFloat = 0
     let textFieldDelegate = TextFieldDelegate()
@@ -27,11 +28,16 @@ class LoginViewController: UIViewController {
         let tapper = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap(_:)))
         tapper.cancelsTouchesInView = false
         view.addGestureRecognizer(tapper);
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
+        textFieldPassword.text = nil
         subscribeToKeyboardNotifications()
+    }
+    override func viewDidAppear(animated: Bool) {
+        if UserLocationData.load() {
+            onLoggedIn()
+        }
     }
     override func viewWillDisappear(animated: Bool) {
         unsubscribeFromKeyboardNotifications()
@@ -90,9 +96,13 @@ class LoginViewController: UIViewController {
             }
             
             UserLocationData.setUserId(userId)
+            
+            if self.keepMeLoggedIn.on {
+                UserLocationData.save()
+            }
             self.setUIEnabled(true)
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
-            self.presentViewController(controller, animated: true, completion: nil)
+            
+            self.onLoggedIn()
         }
     }
     
@@ -128,10 +138,28 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    func onLoggedIn() {
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController")
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     
     private func setUIEnabled(enabled: Bool) {
         textFieldPassword.enabled = enabled
         textFieldEmail.enabled = enabled
         buttonLogin.enabled = enabled
+        keepMeLoggedIn.enabled = enabled
+        
+        if (!enabled) {
+            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityView.center = view.center
+            view.addSubview(activityView)
+            activityView.startAnimating()
+        } else {
+            if let subview = view.subviews.last as? UIActivityIndicatorView {
+                subview.stopAnimating()
+                subview.removeFromSuperview()
+            }
+        }
+        
     }
 }
