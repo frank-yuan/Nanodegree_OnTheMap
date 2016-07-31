@@ -14,12 +14,14 @@
 		94453CC81D471ECA00D2A8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94453CC71D471ECA00D2A8FC /* Assets.xcassets */; };
 		94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CC91D4746DA00D2A8FC /* Constants.swift */; };
 		94453CCE1D474A0000D2A8FC /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94453CCD1D4749FF00D2A8FC /* HttpService.swift */; };
-		9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */; };
+		94507D191D4E3D69007FAAAD /* LocationEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */; };
+		94507D1B1D4E411C007FAAAD /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */; };
+		9465FEFD1D47B0DA00C4244F /* TableUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFC1D47B0DA00C4244F /* TableUsersViewController.swift */; };
 		9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */; };
 		9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9465FF011D47C24E00C4244F /* LoginViewController.swift */; };
 		947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */; };
-		949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E111D4A54680021E93A /* LocationViewController.swift */; };
-		949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */; };
+		949B8E121D4A54680021E93A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E111D4A54680021E93A /* UsersViewController.swift */; };
+		949B8E141D4A55AB0021E93A /* MapUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E131D4A55AB0021E93A /* MapUsersViewController.swift */; };
 		949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E151D4A5BE30021E93A /* UserLocationData.swift */; };
 		949B8E181D4AF79B0021E93A /* HttpServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B8E171D4AF79B0021E93A /* HttpServiceHelper.swift */; };
 		949B8E1D1D4CAC9F0021E93A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949B8E1C1D4CAC9F0021E93A /* MapKit.framework */; };
@@ -49,12 +51,14 @@
 		94453CC71D471ECA00D2A8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94453CC91D4746DA00D2A8FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94453CCD1D4749FF00D2A8FC /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
-		9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLocationViewController.swift; sourceTree = "<group>"; };
+		94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationEditViewController.swift; sourceTree = "<group>"; };
+		94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
+		9465FEFC1D47B0DA00C4244F /* TableUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableUsersViewController.swift; sourceTree = "<group>"; };
 		9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		9465FF011D47C24E00C4244F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
-		949B8E111D4A54680021E93A /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationViewController.swift; sourceTree = "<group>"; };
+		949B8E111D4A54680021E93A /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		949B8E131D4A55AB0021E93A /* MapUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUsersViewController.swift; sourceTree = "<group>"; };
 		949B8E151D4A5BE30021E93A /* UserLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationData.swift; sourceTree = "<group>"; };
 		949B8E171D4AF79B0021E93A /* HttpServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpServiceHelper.swift; sourceTree = "<group>"; };
 		949B8E1C1D4CAC9F0021E93A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -129,10 +133,12 @@
 		94453CCB1D47473600D2A8FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9465FEFC1D47B0DA00C4244F /* TableLocationViewController.swift */,
 				9465FF011D47C24E00C4244F /* LoginViewController.swift */,
-				949B8E111D4A54680021E93A /* LocationViewController.swift */,
-				949B8E131D4A55AB0021E93A /* MapLocationViewController.swift */,
+				9465FEFC1D47B0DA00C4244F /* TableUsersViewController.swift */,
+				949B8E131D4A55AB0021E93A /* MapUsersViewController.swift */,
+				949B8E111D4A54680021E93A /* UsersViewController.swift */,
+				94507D181D4E3D69007FAAAD /* LocationEditViewController.swift */,
+				94507D1A1D4E411C007FAAAD /* LocationMapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -282,19 +288,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94507D191D4E3D69007FAAAD /* LocationEditViewController.swift in Sources */,
 				9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */,
 				947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */,
-				949B8E141D4A55AB0021E93A /* MapLocationViewController.swift in Sources */,
+				949B8E141D4A55AB0021E93A /* MapUsersViewController.swift in Sources */,
 				949B8E211D4CBF1B0021E93A /* udacityAPI.swift in Sources */,
 				943849351D4665F00041D6CF /* AppDelegate.swift in Sources */,
-				949B8E121D4A54680021E93A /* LocationViewController.swift in Sources */,
+				949B8E121D4A54680021E93A /* UsersViewController.swift in Sources */,
 				949B8E161D4A5BE30021E93A /* UserLocationData.swift in Sources */,
-				9465FEFD1D47B0DA00C4244F /* TableLocationViewController.swift in Sources */,
+				9465FEFD1D47B0DA00C4244F /* TableUsersViewController.swift in Sources */,
 				94453CCE1D474A0000D2A8FC /* HttpService.swift in Sources */,
 				949B8E231D4CD65C0021E93A /* parseAPI.swift in Sources */,
 				9465FF001D47BE4F00C4244F /* GCDBlackBox.swift in Sources */,
 				94453CCA1D4746DA00D2A8FC /* Constants.swift in Sources */,
 				949B8E181D4AF79B0021E93A /* HttpServiceHelper.swift in Sources */,
+				94507D1B1D4E411C007FAAAD /* LocationMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

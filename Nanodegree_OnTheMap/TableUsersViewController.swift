@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableLocationViewController: LocationViewController, UITableViewDelegate, UITableViewDataSource {
+class TableUsersViewController: UsersViewController, UITableViewDelegate, UITableViewDataSource {
     
     let tableViewCellIdentifier = "locationCell"
     

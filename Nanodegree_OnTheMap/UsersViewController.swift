@@ -1,5 +1,5 @@
 //
-//  LocationViewController.swift
+//  UsersViewController.swift
 //  Nanodegree_OnTheMap
 //
 //  Created by Xuan Yuan (Frank) on 7/28/16.
@@ -8,18 +8,20 @@
 
 import UIKit
 
-class LocationViewController: UIViewController {
+class UsersViewController: UIViewController {
+    
+    let locationEditViewSegue = "showLocationEditView"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "On The Map"
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(LocationViewController.logOut))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(UsersViewController.logOut))
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(LocationViewController.reloadData))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(UsersViewController.reloadData))
         
-        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(named: "pin"), style: .Plain, target: self, action: #selector(LocationViewController.pinMyLocation)))
+        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(named: "pin"), style: .Plain, target: self, action: #selector(UsersViewController.pinMyLocation)))
 
         // Do any additional setup after loading the view.
     }
@@ -40,7 +42,10 @@ class LocationViewController: UIViewController {
         for item in self.navigationItem.rightBarButtonItems! {
             item.enabled = enabled
         }
-        self.tabBarController?.tabBar.userInteractionEnabled = enabled
+        
+        tabBarController?.view.userInteractionEnabled = enabled
+
+        
         if (!enabled) {
             let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
             activityView.center = view.center
@@ -100,7 +105,25 @@ class LocationViewController: UIViewController {
     }
 
     func pinMyLocation() {
-        
+        setUIEnabled(false)
+        parseAPI.getStudentLocation(UserLocationData.getInstance().userId) { (result, error) in
+            if let results = result!["results"] as? [AnyObject] where results.count > 0 {
+                let alertView = UIAlertController(title: "Already set your location", message: "You have set your location before, do you want to override?", preferredStyle: UIAlertControllerStyle.Alert)
+                alertView.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+                alertView.addAction(UIAlertAction(title: "Overrite", style: UIAlertActionStyle.Default) {(action) -> Void in
+                    self.pushLocationEditView()
+                    })
+                self.presentViewController(alertView, animated: true, completion: nil)
+
+            } else {
+                self.pushLocationEditView()
+            }
+            self.setUIEnabled(true)
+        }
+    }
+    
+    func pushLocationEditView() {
+        self.performSegueWithIdentifier(locationEditViewSegue, sender: self)
     }
     
     func showAlert(title: String, message: String, completionHandler: (()->Void)? ) {

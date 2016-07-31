@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -118,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="2027" y="-242"/>
         </scene>
-        <!--Table Location View Controller-->
+        <!--Table Users View Controller-->
         <scene sceneID="SEH-ng-QXa">
             <objects>
-                <viewController id="PEW-Vl-fwP" customClass="TableLocationViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PEW-Vl-fwP" customClass="TableUsersViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eAG-3C-rBf"/>
                         <viewControllerLayoutGuide type="bottom" id="ADX-NT-9Op"/>
@@ -181,11 +182,172 @@
                     <navigationItem key="navigationItem" id="AvL-gR-ntA"/>
                     <connections>
                         <outlet property="tableView" destination="eqr-5A-cgM" id="DBp-Gh-VaQ"/>
+                        <segue destination="gqn-to-amK" kind="presentation" identifier="showLocationEditView" id="opj-lU-hwP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbU-0W-QHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2750" y="-225"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vzm-c2-Dnw">
+            <objects>
+                <navigationController id="gqn-to-amK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ciC-9T-J1G">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="o4D-MN-sgA" kind="relationship" relationship="rootViewController" id="2g6-4e-Mql"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OlF-as-rRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3764" y="265"/>
+        </scene>
+        <!--Location Edit View Controller-->
+        <scene sceneID="Bku-po-dHm">
+            <objects>
+                <viewController id="o4D-MN-sgA" customClass="LocationEditViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Gm-Ip-BxA"/>
+                        <viewControllerLayoutGuide type="bottom" id="oXH-oe-J1S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uop-bW-dHW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVO-oa-BDf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YPc-yG-qGt"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="m3L-ha-ehW"/>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-EG-4GY">
+                                <rect key="frame" x="20" y="50" width="560" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNz-3H-dKx">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1un-G4-1t7">
+                                        <rect key="frame" x="0.0" y="43.5" width="560" height="43"/>
+                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-1x-OtL">
+                                        <rect key="frame" x="0.0" y="86.5" width="560" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-0P-Qu4">
+                                <rect key="frame" x="0.0" y="180" width="600" height="240"/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.45490196078431372" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30n-1B-fol">
+                                <rect key="frame" x="200" y="500" width="200" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="7gV-Uh-K44"/>
+                                    <constraint firstAttribute="height" constant="40" id="Qho-8c-q3x"/>
+                                </constraints>
+                                <state key="normal" title="Find on the Map"/>
+                                <connections>
+                                    <action selector="onFound" destination="o4D-MN-sgA" eventType="touchUpInside" id="g1A-m1-aWJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.76507962478184988" green="0.76507962478184988" blue="0.76507962478184988" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="N6v-0P-Qu4" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.7" id="2r3-6S-uzP"/>
+                            <constraint firstItem="LVO-oa-BDf" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" constant="-20" id="Frp-nI-lO6"/>
+                            <constraint firstItem="N6v-0P-Qu4" firstAttribute="top" secondItem="gB7-EG-4GY" secondAttribute="bottom" id="FuB-gK-z3B"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N6v-0P-Qu4" secondAttribute="trailing" constant="-20" id="Hwn-ut-qbh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gB7-EG-4GY" secondAttribute="trailing" id="NDl-N7-K2g"/>
+                            <constraint firstItem="LVO-oa-BDf" firstAttribute="top" secondItem="Uop-bW-dHW" secondAttribute="topMargin" id="UND-s6-KsT"/>
+                            <constraint firstItem="30n-1B-fol" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.9" id="Xzl-g8-tir"/>
+                            <constraint firstItem="gB7-EG-4GY" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" id="ZhE-FT-6Hr"/>
+                            <constraint firstItem="gB7-EG-4GY" firstAttribute="top" secondItem="LVO-oa-BDf" secondAttribute="bottom" id="g0C-yj-heV"/>
+                            <constraint firstItem="30n-1B-fol" firstAttribute="centerX" secondItem="Uop-bW-dHW" secondAttribute="centerX" id="iqk-qq-IGG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LVO-oa-BDf" secondAttribute="trailing" constant="-20" id="t7P-9f-KBI"/>
+                            <constraint firstItem="gB7-EG-4GY" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.3" id="wdU-Am-B6V"/>
+                            <constraint firstItem="N6v-0P-Qu4" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" constant="-20" id="znT-U9-wO4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nyH-1l-o11"/>
+                    <connections>
+                        <segue destination="nOj-rj-ohJ" kind="showDetail" identifier="showLocationMap" id="nnO-NC-wb7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ggU-ib-dAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4541" y="235"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0Zo-87-sVI">
+            <objects>
+                <navigationController storyboardIdentifier="LocationMapViewController" id="nOj-rj-ohJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z4u-Un-Fh6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mAL-8q-RqA" kind="relationship" relationship="rootViewController" id="mBp-Aj-bWT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NlM-m7-ouZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4026" y="1402"/>
+        </scene>
+        <!--Location Map View Controller-->
+        <scene sceneID="b65-Ta-zSK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HnB-K2-LKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="mAL-8q-RqA" customClass="LocationMapViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tqB-wR-XLS"/>
+                        <viewControllerLayoutGuide type="bottom" id="hLD-xB-gOA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZmT-Za-Eqr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1x-FX-6bm">
+                                <rect key="frame" x="0.0" y="20" width="600" height="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Gj0-sI-rMT">
+                                <rect key="frame" x="0.0" y="120" width="600" height="480"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="G1x-FX-6bm" firstAttribute="top" secondItem="tqB-wR-XLS" secondAttribute="bottom" id="CYe-J7-L1Y"/>
+                            <constraint firstItem="G1x-FX-6bm" firstAttribute="bottom" secondItem="hLD-xB-gOA" secondAttribute="top" multiplier="0.2" id="Iqd-I7-YGm"/>
+                            <constraint firstItem="hLD-xB-gOA" firstAttribute="top" secondItem="Gj0-sI-rMT" secondAttribute="bottom" id="JY2-dV-arP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gj0-sI-rMT" secondAttribute="trailing" constant="-20" id="O14-tE-cFN"/>
+                            <constraint firstItem="Gj0-sI-rMT" firstAttribute="top" secondItem="G1x-FX-6bm" secondAttribute="bottom" id="U4c-Fj-XER"/>
+                            <constraint firstItem="G1x-FX-6bm" firstAttribute="leading" secondItem="ZmT-Za-Eqr" secondAttribute="leadingMargin" constant="-20" id="iTe-Kn-30H"/>
+                            <constraint firstItem="Gj0-sI-rMT" firstAttribute="leading" secondItem="ZmT-Za-Eqr" secondAttribute="leadingMargin" constant="-20" id="tPY-rx-ORP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="G1x-FX-6bm" secondAttribute="trailing" constant="-20" id="xub-TS-RzD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vjO-1S-iIk"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="5032" y="1451"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CTq-bi-NwA">
@@ -223,10 +385,10 @@
             </objects>
             <point key="canvasLocation" x="2087" y="839"/>
         </scene>
-        <!--Map Location View Controller-->
+        <!--Map Users View Controller-->
         <scene sceneID="dzq-8T-E9D">
             <objects>
-                <viewController id="J9g-gO-e1W" customClass="MapLocationViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="J9g-gO-e1W" customClass="MapUsersViewController" customModule="Nanodegree_OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAx-pI-iOg"/>
                         <viewControllerLayoutGuide type="bottom" id="7D9-WY-j3t"/>
@@ -262,11 +424,12 @@
                     <connections>
                         <outlet property="busyOverlay" destination="328-dw-GjW" id="f5y-7W-mtN"/>
                         <outlet property="mapView" destination="GOU-CE-IiJ" id="yyY-7R-3vu"/>
+                        <segue destination="gqn-to-amK" kind="presentation" identifier="showLocationEditView" id="Gv5-dg-rlW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnP-rh-eT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2992" y="838.5"/>
+            <point key="canvasLocation" x="2858" y="839"/>
         </scene>
     </scenes>
     <resources>
@@ -276,4 +439,7 @@
         <image name="pin" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gv5-dg-rlW"/>
+    </inferredMetricsTieBreakers>
 </document>

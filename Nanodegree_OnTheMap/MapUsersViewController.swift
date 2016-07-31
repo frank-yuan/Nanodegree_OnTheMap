@@ -1,5 +1,5 @@
 //
-//  MapLocationViewController.swift
+//  MapUsersViewController.swift
 //  Nanodegree_OnTheMap
 //
 //  Created by Xuan Yuan (Frank) on 7/28/16.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapLocationViewController: LocationViewController,  MKMapViewDelegate{
+class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
 
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var busyOverlay : UIImageView!
