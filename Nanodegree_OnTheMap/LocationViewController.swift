@@ -17,7 +17,7 @@ class LocationViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(LocationViewController.logOut))
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(LocationViewController.refreshData))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(LocationViewController.reloadData))
         
         self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(named: "pin"), style: .Plain, target: self, action: #selector(LocationViewController.pinMyLocation)))
 
@@ -28,44 +28,33 @@ class LocationViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if UserLocationData.getInstance().locations.count == 0 {
-            // retrieve locations from server
-            parseAPI.getStudentsLocation(){ (result, error) in
-                
-                if let result = result , resultArray = result["results"] as? [AnyObject] {
-                    for item in resultArray {
-                        UserLocationData.appendLocation(UserLocationData.UserData(object: item))
-                    }
-                    performUIUpdatesOnMain({
-                        self.onDataReload()
-                    })
-                }
-                else
-                {
-                    let alertView = UIAlertController(title: "Loading parse data fail!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-                    alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                }
-            }
+            reloadData()
         }
         else {
-            self.onDataReload()
+            self.onDataReloaded()
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setUIEnabled(enabled: Bool) {
         self.navigationItem.leftBarButtonItem?.enabled = enabled
-        //self.navigationItem.rightBarButtonItem?.enabled = enabled
         for item in self.navigationItem.rightBarButtonItems! {
             item.enabled = enabled
         }
+        self.tabBarController?.tabBar.userInteractionEnabled = enabled
+        if (!enabled) {
+            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityView.center = view.center
+            view.addSubview(activityView)
+            activityView.startAnimating()
+        } else {
+            if let subview = view.subviews.last as? UIActivityIndicatorView {
+                subview.stopAnimating()
+                subview.removeFromSuperview()
+            }
+        }
     }
     
-    func onDataReload() {
+    func onDataReloaded() {
         
     }
 
@@ -75,21 +64,49 @@ class LocationViewController: UIViewController {
         udacityAPI.logout() { (result, error) in
             performUIUpdatesOnMain(){
                 if error != NetworkError.NoError {
-                    UserLocationData.reset()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.showAlert("Logout with error!", message: "", completionHandler: nil)
                 }
+                UserLocationData.reset()
+                self.dismissViewControllerAnimated(true, completion: nil)
                 self.setUIEnabled(true)
             }
-            
         }
     }
     
-    func refreshData() {
-        
+    func reloadData() {
+        setUIEnabled(false)
+        // retrieve locations from server
+        parseAPI.getStudentsLocation(){ (result, error) in
+            
+            if let result = result , resultArray = result["results"] as? [AnyObject] {
+                
+                UserLocationData.clearLocation()
+                
+                for item in resultArray {
+                    UserLocationData.appendLocation(UserLocationData.UserData(object: item))
+                }
+                
+                performUIUpdatesOnMain({
+                    self.onDataReloaded()
+                    self.setUIEnabled(true)
+                })
+            }
+            else
+            {
+                self.setUIEnabled(true)
+                self.showAlert("Loading parse data fail!", message: "", completionHandler: nil)
+            }
+        }
     }
 
     func pinMyLocation() {
         
+    }
+    
+    func showAlert(title: String, message: String, completionHandler: (()->Void)? ) {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: completionHandler)
     }
     /*
     // MARK: - Navigation

@@ -13,15 +13,15 @@ struct UserLocationData {
         let lastName:String
         let mediaURL:String
         let mapString:String
-        let latitude:CGFloat
-        let longitude:CGFloat
+        let latitude:Double
+        let longitude:Double
         init(object:AnyObject) {
             firstName = object["firstName"] as! String
             lastName = object["lastName"] as! String
             mediaURL = object["mediaURL"] as! String
             mapString = object["mapString"] as! String
-            latitude = object["latitude"] as! CGFloat
-            longitude = object["longitude"] as! CGFloat
+            latitude = object["latitude"] as! Double
+            longitude = object["longitude"] as! Double
         }
     }
     
@@ -29,7 +29,7 @@ struct UserLocationData {
     var locations: [UserData]
     
     
-    private static var sharedData : UserLocationData = UserLocationData(userId: "", locations: [UserData]())
+    private static var sharedData : UserLocationData = UserLocationData(userId: "",locations: [UserData]())
     
     static func getInstance() -> UserLocationData{
         return sharedData
@@ -49,17 +49,7 @@ struct UserLocationData {
         sharedData.locations.append(location)
     }
     
-    static func save() {
-        if sharedData.userId.characters.count > 0 {
-            NSUserDefaults.standardUserDefaults().setValue(sharedData.userId, forKeyPath: "userId")
-        }
-    }
-    
-    static func load() -> Bool {
-        if let userId = NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String {
-            setUserId(userId)
-            return true;
-        }
-        return false
+    static func clearLocation() {
+        sharedData.locations.removeAll()
     }
 }

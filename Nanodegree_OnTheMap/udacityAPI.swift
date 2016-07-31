@@ -51,7 +51,7 @@ class udacityAPI: NSObject {
                 if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
             }
             if let xsrfCookie = xsrfCookie {
-                request.addHeader([xsrfCookie.value:"X-XSRF-TOKEN"])
+                request.addHeader(["X-XSRF-TOKEN":xsrfCookie.value])
             }
             
             HttpService.service(request) { (data, error) in

@@ -13,7 +13,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
-    @IBOutlet weak var keepMeLoggedIn: UISwitch!
     
     var viewOriginY:CGFloat = 0
     let textFieldDelegate = TextFieldDelegate()
@@ -34,11 +33,7 @@ class LoginViewController: UIViewController {
         textFieldPassword.text = nil
         subscribeToKeyboardNotifications()
     }
-    override func viewDidAppear(animated: Bool) {
-        if UserLocationData.load() {
-            onLoggedIn()
-        }
-    }
+
     override func viewWillDisappear(animated: Bool) {
         unsubscribeFromKeyboardNotifications()
     }
@@ -97,9 +92,6 @@ class LoginViewController: UIViewController {
             
             UserLocationData.setUserId(userId)
             
-            if self.keepMeLoggedIn.on {
-                UserLocationData.save()
-            }
             self.setUIEnabled(true)
             
             self.onLoggedIn()
@@ -147,7 +139,6 @@ class LoginViewController: UIViewController {
         textFieldPassword.enabled = enabled
         textFieldEmail.enabled = enabled
         buttonLogin.enabled = enabled
-        keepMeLoggedIn.enabled = enabled
         
         if (!enabled) {
             let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)

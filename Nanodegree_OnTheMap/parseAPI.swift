@@ -9,7 +9,8 @@
 import Foundation
 
 class parseAPI: NSObject {
-    
+    static var retrievedCount = 0
+    static let queryLimit = 100
     struct ParseServiceConfig : ServiceConfig {
         var ApiScheme: String { return "https" }
         var ApiHost: String { return "api.parse.com" }
@@ -25,10 +26,12 @@ class parseAPI: NSObject {
             HttpService.service(request) { (data, error) in
                 
                 HttpServiceHelper.parseJSONResponse(data, error: error){ (result, networkError) in
+                    if (networkError == NetworkError.NoError) {
+                        retrievedCount += queryLimit
+                    }
                     completeHandler(result: result, error: networkError)
                 }
             }
         }
-
     }
 }
