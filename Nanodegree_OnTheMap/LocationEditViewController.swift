@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class LocationEditViewController: UIViewController {
+class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
 
     @IBOutlet weak var navBar : UINavigationBar!
     @IBOutlet weak var stackView : UIStackView!
@@ -18,8 +18,18 @@ class LocationEditViewController: UIViewController {
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var button : UIButton!
     
+    
+    let localSearch:MKLocalSearch? = nil
+    let locationManager = CLLocationManager()
+    var userLocation = CLLocation()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let textDelegate = TextFieldDelegate()
+        locationTextField.delegate = textDelegate
+        linkTextField.delegate = textDelegate
+        
         configureUI(false)
         // Do any additional setup after loading the view.
     }
@@ -28,9 +38,22 @@ class LocationEditViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func onFound() {
-        configureUI(true)
-        
+    @IBAction func onSearch() {
+    }
+    
+    @IBAction func onLocateMe() {
+        if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .Denied{
+            let alert = UIAlertController(title: "Location services", message: "Location services are not enabled. Please enable location services in settings.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            return
+            
+        } else if CLLocationManager.authorizationStatus() == .NotDetermined{
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        //configureUI(true)
     }
     
     func configureUI(enableMapView:Bool) {
@@ -40,6 +63,20 @@ class LocationEditViewController: UIViewController {
         mapView.hidden = !enableMapView
     }
     
+    // MARK: Implement of UITextFieldDelegate
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 {
+            userLocation = locations.last!
+            mapView.setCenterCoordinate(userLocation.coordinate, animated: true)
+            configureUI(true)
+        } else {
+            onLocationNotFound()
+        }
+    }
+    
+    func onLocationNotFound() {
+        
+    }
     
     /*
     // MARK: - Navigation

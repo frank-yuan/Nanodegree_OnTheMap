@@ -216,19 +216,19 @@
                                 <rect key="frame" x="20" y="50" width="600" height="130"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNz-3H-dKx">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1un-G4-1t7">
-                                        <rect key="frame" x="0.0" y="43" width="600" height="43"/>
+                                        <rect key="frame" x="0.0" y="44" width="600" height="43"/>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-1x-OtL">
-                                        <rect key="frame" x="0.0" y="86" width="600" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="87" width="600" height="44"/>
                                         <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -261,6 +261,13 @@
                             <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-hF-kQs">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG6-GY-FH6">
+                                <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
+                                <state key="normal" title="Locate Me"/>
+                                <connections>
+                                    <action selector="onLocateMe" destination="o4D-MN-sgA" eventType="touchUpInside" id="wd4-jS-WgR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76507962478184988" green="0.76507962478184988" blue="0.76507962478184988" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
