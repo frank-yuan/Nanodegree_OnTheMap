@@ -201,34 +201,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOt-MC-Nz3">
-                                <rect key="frame" x="480" y="20" width="100" height="30"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQa-g4-Icy">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="YdR-29-D1Q"/>
-                                    <constraint firstAttribute="height" constant="30" id="xgB-vL-0a1"/>
+                                    <constraint firstAttribute="height" constant="44" id="3up-ck-1Xk"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="onCancel" destination="o4D-MN-sgA" eventType="touchUpInside" id="8Ch-m8-jrL"/>
-                                </connections>
-                            </button>
+                                <items>
+                                    <navigationItem id="Uyc-AE-S9P">
+                                        <barButtonItem key="leftBarButtonItem" title="Locate Me" id="Ciz-j6-0aS">
+                                            <connections>
+                                                <action selector="onLocateMe" destination="o4D-MN-sgA" id="oiS-o5-7Ad"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="pG5-b0-nIZ">
+                                            <connections>
+                                                <action selector="onCancel" destination="o4D-MN-sgA" id="XJl-Nq-XR6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-EG-4GY">
-                                <rect key="frame" x="20" y="50" width="600" height="130"/>
+                                <rect key="frame" x="20" y="64" width="600" height="116"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNz-3H-dKx">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="38.5"/>
                                         <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1un-G4-1t7">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="43"/>
+                                        <rect key="frame" x="0.0" y="38" width="600" height="39"/>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-1x-OtL">
-                                        <rect key="frame" x="0.0" y="87" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="77" width="600" height="38.5"/>
                                         <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -254,40 +263,34 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBC-xc-wfe">
-                                <rect key="frame" x="0.0" y="50" width="600" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-hF-kQs">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG6-GY-FH6">
-                                <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
-                                <state key="normal" title="Locate Me"/>
-                                <connections>
-                                    <action selector="onLocateMe" destination="o4D-MN-sgA" eventType="touchUpInside" id="wd4-jS-WgR"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76507962478184988" green="0.76507962478184988" blue="0.76507962478184988" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="N6v-0P-Qu4" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.7" id="2r3-6S-uzP"/>
                             <constraint firstItem="Fxo-hF-kQs" firstAttribute="top" secondItem="KBC-xc-wfe" secondAttribute="bottom" id="3c6-3p-3aT"/>
                             <constraint firstItem="Fxo-hF-kQs" firstAttribute="centerX" secondItem="Uop-bW-dHW" secondAttribute="centerX" id="4qm-1l-HnH"/>
-                            <constraint firstItem="KBC-xc-wfe" firstAttribute="top" secondItem="nOt-MC-Nz3" secondAttribute="bottom" id="69a-6a-egn"/>
+                            <constraint firstItem="KBC-xc-wfe" firstAttribute="top" secondItem="wQa-g4-Icy" secondAttribute="bottom" id="Bsb-Ai-mXE"/>
                             <constraint firstItem="N6v-0P-Qu4" firstAttribute="top" secondItem="gB7-EG-4GY" secondAttribute="bottom" id="FuB-gK-z3B"/>
+                            <constraint firstItem="wQa-g4-Icy" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" constant="-20" id="HBC-6U-XYa"/>
                             <constraint firstItem="oXH-oe-J1S" firstAttribute="top" secondItem="Fxo-hF-kQs" secondAttribute="bottom" id="HVw-FM-piz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="N6v-0P-Qu4" secondAttribute="trailing" constant="-20" id="Hwn-ut-qbh"/>
-                            <constraint firstItem="nOt-MC-Nz3" firstAttribute="top" secondItem="6Gm-Ip-BxA" secondAttribute="bottom" id="INS-LY-oM8"/>
                             <constraint firstItem="KBC-xc-wfe" firstAttribute="width" secondItem="Uop-bW-dHW" secondAttribute="width" id="O3r-uv-CIh"/>
                             <constraint firstItem="KBC-xc-wfe" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.15" id="Q0F-7N-AWg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nOt-MC-Nz3" secondAttribute="trailing" id="Wdm-we-X1l"/>
                             <constraint firstItem="30n-1B-fol" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.95" id="Xzl-g8-tir"/>
                             <constraint firstItem="gB7-EG-4GY" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" id="ZhE-FT-6Hr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wQa-g4-Icy" secondAttribute="trailing" constant="-20" id="agJ-Nz-fPE"/>
                             <constraint firstItem="30n-1B-fol" firstAttribute="centerX" secondItem="Uop-bW-dHW" secondAttribute="centerX" id="iqk-qq-IGG"/>
                             <constraint firstItem="KBC-xc-wfe" firstAttribute="centerX" secondItem="Uop-bW-dHW" secondAttribute="centerX" id="kig-UE-6y0"/>
+                            <constraint firstItem="wQa-g4-Icy" firstAttribute="top" secondItem="6Gm-Ip-BxA" secondAttribute="bottom" id="lD5-Rz-NUR"/>
                             <constraint firstItem="gB7-EG-4GY" firstAttribute="width" secondItem="Uop-bW-dHW" secondAttribute="width" id="lGO-Zd-RnD"/>
-                            <constraint firstItem="gB7-EG-4GY" firstAttribute="top" secondItem="nOt-MC-Nz3" secondAttribute="bottom" id="raa-RA-obt"/>
+                            <constraint firstItem="gB7-EG-4GY" firstAttribute="top" secondItem="wQa-g4-Icy" secondAttribute="bottom" id="nOo-iM-efG"/>
                             <constraint firstItem="Fxo-hF-kQs" firstAttribute="width" secondItem="Uop-bW-dHW" secondAttribute="width" id="rmU-ep-OEB"/>
                             <constraint firstItem="gB7-EG-4GY" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.3" id="wdU-Am-B6V"/>
                             <constraint firstItem="N6v-0P-Qu4" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" constant="-20" id="znT-U9-wO4"/>
