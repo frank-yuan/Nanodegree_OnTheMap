@@ -244,9 +244,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-0P-Qu4">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-hF-kQs">
+                                <rect key="frame" x="0.0" y="90" width="600" height="510"/>
+                            </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a location to search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-0P-Qu4">
                                 <rect key="frame" x="0.0" y="180" width="600" height="240"/>
                                 <color key="backgroundColor" red="0.24705882352941178" green="0.45490196078431372" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBC-xc-wfe">
+                                <rect key="frame" x="0.0" y="64" width="600" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -259,17 +267,9 @@
                                 </constraints>
                                 <state key="normal" title="Find on the Map"/>
                                 <connections>
-                                    <action selector="onFound" destination="o4D-MN-sgA" eventType="touchUpInside" id="g1A-m1-aWJ"/>
+                                    <action selector="onSearch" destination="o4D-MN-sgA" eventType="touchUpInside" id="CKh-lx-tdZ"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBC-xc-wfe">
-                                <rect key="frame" x="0.0" y="64" width="600" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-hF-kQs">
-                                <rect key="frame" x="0.0" y="90" width="600" height="510"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.76507962478184988" green="0.76507962478184988" blue="0.76507962478184988" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -296,7 +296,6 @@
                             <constraint firstItem="N6v-0P-Qu4" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" constant="-20" id="znT-U9-wO4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nyH-1l-o11"/>
                     <connections>
                         <outlet property="button" destination="30n-1B-fol" id="l5h-nk-gsx"/>
                         <outlet property="linkTextField" destination="KBC-xc-wfe" id="sQ6-MV-oV8"/>

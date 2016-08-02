@@ -19,19 +19,22 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
     @IBOutlet weak var button : UIButton!
     
     
-    let localSearch:MKLocalSearch? = nil
+    var localSearch:MKLocalSearch? = nil
+    let textDelegate = TextFieldDelegate()
     let locationManager = CLLocationManager()
     var userLocation = CLLocation()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let textDelegate = TextFieldDelegate()
         locationTextField.delegate = textDelegate
         linkTextField.delegate = textDelegate
         
         configureUI(false)
         // Do any additional setup after loading the view.
+        let tapper = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap(_:)))
+        tapper.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapper);
     }
     
     @IBAction func onCancel() {
@@ -39,19 +42,42 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
     }
     
     @IBAction func onSearch() {
+        
+        locationTextField.resignFirstResponder()
+        if locationTextField.text?.characters.count == 0 {
+            showAlert("Type some thing to search", message: "", buttonText: "OK")
+            return
+        }
+        
+        if let ls = localSearch where ls.searching {
+            ls.cancel()
+        }
+        
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = locationTextField.text
+        
+        localSearch = MKLocalSearch(request: request)
+        localSearch!.startWithCompletionHandler(){ (response, error) in
+            if let error = error {
+                self.onLocationNotFound(error)
+            } else {
+                let mapItem = response?.mapItems.last
+                self.configureMapView((mapItem?.placemark.coordinate)!)
+                self.configureUI(true)
+            }
+        }
     }
     
     @IBAction func onLocateMe() {
         if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .Denied{
-            let alert = UIAlertController(title: "Location services", message: "Location services are not enabled. Please enable location services in settings.", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            showAlert("Location services", message: "Location services are not enabled. Please enable location services in settings.", buttonText: "OK")
             return
             
         } else if CLLocationManager.authorizationStatus() == .NotDetermined{
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.delegate = self
+        locationManager.stopUpdatingLocation()
         locationManager.startUpdatingLocation()
         //configureUI(true)
     }
@@ -67,25 +93,52 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count > 0 {
             userLocation = locations.last!
-            mapView.setCenterCoordinate(userLocation.coordinate, animated: true)
+            configureMapView(userLocation.coordinate)
             configureUI(true)
         } else {
-            onLocationNotFound()
+            onLocationNotFound(nil)
         }
     }
     
-    func onLocationNotFound() {
-        
+    func onLocationNotFound(error:NSError?) {
+        showAlert("Could not find places", message: error == nil ? "" : error!.userInfo.description, buttonText: "OK")
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configureMapView(coordinate: CLLocationCoordinate2D) {
+        
+        mapView.setCenterCoordinate(coordinate, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        mapView.addAnnotation(annotation)
     }
-    */
+    
+    func handleSingleTap(sender:UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    func showAlert(title: String, message: String, buttonText: String) {
+        
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: buttonText, style: .Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.pinTintColor = UIColor.redColor()
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+
 
 }

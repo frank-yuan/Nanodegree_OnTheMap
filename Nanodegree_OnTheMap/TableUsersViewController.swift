@@ -27,8 +27,10 @@ class TableUsersViewController: UsersViewController, UITableViewDelegate, UITabl
         cell.textLabel?.text = location.lastName + " " + location.firstName
         cell.detailTextLabel?.text = location.mediaURL
         // Show disclosuer for cell with a valid url
-        if let url = NSURL(string: location.mediaURL) where UIApplication.sharedApplication().canOpenURL(url) {
+        if let url = NSURL(string: location.mediaURL) where url.scheme.characters.count > 0 && UIApplication.sharedApplication().canOpenURL(url) {
             cell.accessoryType =  .DisclosureIndicator
+        } else {
+            cell.accessoryType =  .None
         }
         
         return cell
