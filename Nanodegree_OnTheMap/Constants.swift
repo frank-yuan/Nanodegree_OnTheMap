@@ -15,6 +15,8 @@ struct Constant {
         static let apiKeyKey = "X-Parse-REST-API-Key"
         static let applicationIdValue = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let apiKeyValue = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let contentTypeKey = "Content-Type"
+        static let contentTypeValue = "application/json"
     }
     
 }

@@ -32,8 +32,8 @@ class parseAPI: NSObject {
     }
     
     static func getStudentLocation(uniqueKey:String, completeHandler:(result:AnyObject? , error:NetworkError) -> Void) {
-        let parameter = "{\"uniqueKey\":\"\(uniqueKey)\"}".stringByAddingPercentEscapesUsingEncoding(NSUnicodeStringEncoding)
-        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["where":parameter!]) {
+        let parameter = "{\"uniqueKey\":\"\(uniqueKey)\"}"
+        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["where":parameter]) {
             let request = HttpRequest(url: url)
             request.addHeader([Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
                 Constant.ParseApi.apiKeyKey: Constant.ParseApi.apiKeyValue])
@@ -47,18 +47,20 @@ class parseAPI: NSObject {
         }
     }
     
-    static func postStudentLocation(userId:String, userData:UserLocationData.UserData, completeHandler:(result:AnyObject? , error:NetworkError) -> Void) {
-        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: nil) {
-            let request = HttpRequest(url: url, method: HttpRequest.HttpMethod.POST)
-            request.addHeader([Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
-                Constant.ParseApi.apiKeyKey: Constant.ParseApi.apiKeyValue])
-            request.addData("uniqueKey", value: userId)
-            request.addData("firstName", value: userData.firstName)
-            request.addData("lastName", value: userData.lastName)
-            request.addData("mediaURL", value: userData.mediaURL)
-            request.addData("mapString", value: userData.mapString)
-            request.addData("latitude", value: userData.latitude)
-            request.addData("longitude", value: userData.longitude)
+    static func postStudentLocation(data:[String:AnyObject], objectId:String = "", completeHandler:(result:AnyObject? , error:NetworkError) -> Void) {
+        
+        let isUpdate:Bool = objectId != ""
+        
+        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation" + (isUpdate ? "/\(objectId)" : ""), queryItems: nil) {
+            let request = HttpRequest(url: url, method: (isUpdate ? HttpRequest.HttpMethod.PUT : HttpRequest.HttpMethod.POST))
+            request.addHeader([
+                Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
+                Constant.ParseApi.apiKeyKey:        Constant.ParseApi.apiKeyValue,
+                Constant.ParseApi.contentTypeKey:   Constant.ParseApi.contentTypeValue])
+            
+            for (key, value) in data {
+                request.addData(key, value: value)
+            }
             
             HttpService.service(request) { (data, error) in
                 HttpServiceHelper.parseJSONResponse(data, error: error){ (result, networkError) in

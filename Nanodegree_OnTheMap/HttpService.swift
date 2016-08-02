@@ -29,6 +29,7 @@ class HttpRequest : NSObject {
         case GET = "GET"
         case POST = "POST"
         case DELETE = "DELETE"
+        case PUT = "PUT"
     }
     
     private let method:HttpMethod

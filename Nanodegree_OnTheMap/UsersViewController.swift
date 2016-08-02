@@ -11,6 +11,7 @@ import UIKit
 class UsersViewController: UIViewController {
     
     let locationEditViewSegue = "showLocationEditView"
+    var objectId = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,15 @@ class UsersViewController: UIViewController {
         else {
             self.onDataReloaded()
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == locationEditViewSegue) {
+            if let vc = segue.destinationViewController as? LocationEditViewController {
+                vc.objectId = objectId
+            }
+        }
+        
     }
     
     func setUIEnabled(enabled: Bool) {
@@ -111,19 +121,21 @@ class UsersViewController: UIViewController {
                 let alertView = UIAlertController(title: "Already set your location", message: "You have set your location before, do you want to override?", preferredStyle: UIAlertControllerStyle.Alert)
                 alertView.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
                 alertView.addAction(UIAlertAction(title: "Overrite", style: UIAlertActionStyle.Default) {(action) -> Void in
-                    self.pushLocationEditView()
+                    let objectId = AnyObjectHelper.parseData(results[0], name: "objectId", defaultValue: "")
+                    self.pushLocationEditView(objectId)
                     })
                 self.presentViewController(alertView, animated: true, completion: nil)
 
             } else {
-                self.pushLocationEditView()
+                self.pushLocationEditView("")
             }
             self.setUIEnabled(true)
         }
     }
     
-    func pushLocationEditView() {
-        self.performSegueWithIdentifier(locationEditViewSegue, sender: self)
+    func pushLocationEditView(objectId:String) {
+        self.objectId = objectId
+        performSegueWithIdentifier(locationEditViewSegue, sender: self)
     }
     
     func showAlert(title: String, message: String, completionHandler: (()->Void)? ) {

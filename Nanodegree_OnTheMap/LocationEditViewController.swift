@@ -11,19 +11,20 @@ import MapKit
 
 class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
 
-    @IBOutlet weak var navBar : UINavigationBar!
     @IBOutlet weak var stackView : UIStackView!
     @IBOutlet weak var locationTextField : UITextField!
     @IBOutlet weak var linkTextField : UITextField!
     @IBOutlet weak var mapView : MKMapView!
-    @IBOutlet weak var button : UIButton!
+    @IBOutlet weak var searchButton : UIButton!
+    @IBOutlet weak var submitButton : UIButton!
     
     
-    var localSearch:MKLocalSearch? = nil
-    let textDelegate = TextFieldDelegate()
-    let locationManager = CLLocationManager()
-    var userLocation = CLLocation()
-    
+    var objectId = ""
+    private var localSearch:MKLocalSearch? = nil
+    private let textDelegate = TextFieldDelegate()
+    private let locationManager = CLLocationManager()
+    private var userLocation = CLLocationCoordinate2D()
+    private let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.112872, longitudeDelta: 0.109863)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,40 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
         }
     }
     
+    @IBAction func onSubmit() {
+        locationTextField.resignFirstResponder()
+        if linkTextField.text?.characters.count == 0 {
+            showAlert("Type your linkedin address", message: "", buttonText: "OK")
+            return
+        }
+        
+        udacityAPI.getUserData(UserLocationData.getInstance().userId){ (result, error) in
+            guard let result = result where error == NetworkError.NoError else {
+                self.showAlert("Fail to submit.", message: "", buttonText: "OK")
+                return
+            }
+            
+            var data = [String:AnyObject]()
+            if let user = result["user"]{
+                data["uniqueKey"] = AnyObjectHelper.parseData(user, name: "key", defaultValue: "");
+                data["firstName"] = AnyObjectHelper.parseData(user, name: "first_name", defaultValue: "");
+                data["lastName"] = AnyObjectHelper.parseData(user, name: "last_name", defaultValue: "");
+                data["latitude"] = self.userLocation.latitude
+                data["longitude"] = self.userLocation.longitude
+                data["mapString"] = self.locationTextField.text!
+                data["mediaURL"] = self.linkTextField.text!
+            }
+            parseAPI.postStudentLocation(data, objectId: self.objectId) { (result, error) in
+                if (error != NetworkError.NoError)
+                {
+                    self.showAlert("Fail to submit your location", message: "", buttonText: "OK")
+                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+        }
+    }
+    
     @IBAction func onLocateMe() {
         if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .Denied{
             showAlert("Location services", message: "Location services are not enabled. Please enable location services in settings.", buttonText: "OK")
@@ -87,14 +122,26 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
         locationTextField.hidden = enableMapView
         linkTextField.hidden = !enableMapView
         mapView.hidden = !enableMapView
+        searchButton.hidden = enableMapView
+        submitButton.hidden = !enableMapView
     }
     
     // MARK: Implement of UITextFieldDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count > 0 {
-            userLocation = locations.last!
-            configureMapView(userLocation.coordinate)
-            configureUI(true)
+            let location = locations.last!
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+                if (error != nil || placemarks?.count == 0) {
+                    self.onLocationNotFound(error)
+                    return
+                }
+                
+                self.configureMapView(location.coordinate)
+                self.configureUI(true)
+                self.locationTextField.text = placemarks?.last!.name
+                
+            }
         } else {
             onLocationNotFound(nil)
         }
@@ -105,8 +152,9 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate{
     }
     
     func configureMapView(coordinate: CLLocationCoordinate2D) {
-        
+        userLocation = coordinate
         mapView.setCenterCoordinate(coordinate, animated: true)
+        mapView.setRegion(MKCoordinateRegion(center: coordinate, span: coordinateSpan), animated: true)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)

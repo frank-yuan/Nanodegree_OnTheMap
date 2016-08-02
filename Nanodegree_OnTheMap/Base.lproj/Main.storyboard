@@ -182,7 +182,7 @@
                     <navigationItem key="navigationItem" id="AvL-gR-ntA"/>
                     <connections>
                         <outlet property="tableView" destination="eqr-5A-cgM" id="DBp-Gh-VaQ"/>
-                        <segue destination="o4D-MN-sgA" kind="presentation" identifier="showLocationEditView" id="is5-ML-Kkn"/>
+                        <segue destination="o4D-MN-sgA" kind="presentation" identifier="showLocationEditView" id="Dwq-Dp-WnP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbU-0W-QHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,13 +231,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1un-G4-1t7">
-                                        <rect key="frame" x="0.0" y="38" width="600" height="39"/>
+                                        <rect key="frame" x="0.0" y="38.5" width="600" height="39"/>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-1x-OtL">
-                                        <rect key="frame" x="0.0" y="77" width="600" height="38.5"/>
+                                        <rect key="frame" x="0.0" y="77.5" width="600" height="38.5"/>
                                         <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="21"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -270,6 +270,18 @@
                                     <action selector="onSearch" destination="o4D-MN-sgA" eventType="touchUpInside" id="CKh-lx-tdZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="813-rz-Q2P">
+                                <rect key="frame" x="250" y="530" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FdE-t5-C0E"/>
+                                    <constraint firstAttribute="width" constant="100" id="j71-Nq-aEh"/>
+                                </constraints>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="onSubmit" destination="o4D-MN-sgA" eventType="touchUpInside" id="So4-pX-r1p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76507962478184988" green="0.76507962478184988" blue="0.76507962478184988" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -282,6 +294,8 @@
                             <constraint firstItem="oXH-oe-J1S" firstAttribute="top" secondItem="Fxo-hF-kQs" secondAttribute="bottom" id="HVw-FM-piz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="N6v-0P-Qu4" secondAttribute="trailing" constant="-20" id="Hwn-ut-qbh"/>
                             <constraint firstItem="KBC-xc-wfe" firstAttribute="width" secondItem="Uop-bW-dHW" secondAttribute="width" id="O3r-uv-CIh"/>
+                            <constraint firstItem="813-rz-Q2P" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.95" id="Oyz-ht-ALm"/>
+                            <constraint firstItem="813-rz-Q2P" firstAttribute="centerX" secondItem="Uop-bW-dHW" secondAttribute="centerX" id="Pa5-v7-qQC"/>
                             <constraint firstItem="KBC-xc-wfe" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.15" id="Q0F-7N-AWg"/>
                             <constraint firstItem="30n-1B-fol" firstAttribute="bottom" secondItem="oXH-oe-J1S" secondAttribute="top" multiplier="0.95" id="Xzl-g8-tir"/>
                             <constraint firstItem="gB7-EG-4GY" firstAttribute="leading" secondItem="Uop-bW-dHW" secondAttribute="leadingMargin" id="ZhE-FT-6Hr"/>
@@ -297,11 +311,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="30n-1B-fol" id="l5h-nk-gsx"/>
                         <outlet property="linkTextField" destination="KBC-xc-wfe" id="sQ6-MV-oV8"/>
                         <outlet property="locationTextField" destination="N6v-0P-Qu4" id="zMQ-WR-1Iq"/>
                         <outlet property="mapView" destination="Fxo-hF-kQs" id="5fY-mt-4u2"/>
+                        <outlet property="searchButton" destination="30n-1B-fol" id="Bmf-OE-kWx"/>
                         <outlet property="stackView" destination="gB7-EG-4GY" id="0eb-f3-nQE"/>
+                        <outlet property="submitButton" destination="813-rz-Q2P" id="QGc-dL-pOh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggU-ib-dAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -383,7 +398,7 @@
                     <connections>
                         <outlet property="busyOverlay" destination="328-dw-GjW" id="f5y-7W-mtN"/>
                         <outlet property="mapView" destination="GOU-CE-IiJ" id="yyY-7R-3vu"/>
-                        <segue destination="o4D-MN-sgA" kind="presentation" identifier="showLocationEditView" id="j3c-DS-9Ng"/>
+                        <segue destination="o4D-MN-sgA" kind="presentation" identifier="showLocationEditView" id="qgI-oD-MeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnP-rh-eT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,6 +414,6 @@
         <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j3c-DS-9Ng"/>
+        <segue reference="qgI-oD-MeF"/>
     </inferredMetricsTieBreakers>
 </document>
