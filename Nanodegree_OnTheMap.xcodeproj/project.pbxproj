@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9419AF781D50EB9600EDC0E7 /* AnyObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF771D50EB9600EDC0E7 /* AnyObjectHelper.swift */; };
 		943849351D4665F00041D6CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943849341D4665F00041D6CF /* AppDelegate.swift */; };
 		9438493A1D4665F00041D6CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943849381D4665F00041D6CF /* Main.storyboard */; };
 		9438493F1D4665F10041D6CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9438493D1D4665F10041D6CF /* LaunchScreen.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9419AF771D50EB9600EDC0E7 /* AnyObjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyObjectHelper.swift; sourceTree = "<group>"; };
 		943849311D4665F00041D6CF /* Nanodegree_OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		943849341D4665F00041D6CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		943849391D4665F00041D6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				9465FEFF1D47BE4F00C4244F /* GCDBlackBox.swift */,
 				9474280F1D48FDB200B8F9A8 /* TextFieldDelegate.swift */,
+				9419AF771D50EB9600EDC0E7 /* AnyObjectHelper.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94507D191D4E3D69007FAAAD /* LocationEditViewController.swift in Sources */,
+				9419AF781D50EB9600EDC0E7 /* AnyObjectHelper.swift in Sources */,
 				9465FF021D47C24E00C4244F /* LoginViewController.swift in Sources */,
 				947428101D48FDB200B8F9A8 /* TextFieldDelegate.swift in Sources */,
 				949B8E141D4A55AB0021E93A /* MapUsersViewController.swift in Sources */,
