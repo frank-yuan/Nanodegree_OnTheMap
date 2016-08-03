@@ -246,6 +246,9 @@
                             </stackView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-hF-kQs">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
+                                <connections>
+                                    <outlet property="delegate" destination="o4D-MN-sgA" id="tbq-Bw-e8T"/>
+                                </connections>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a location to search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-0P-Qu4">
                                 <rect key="frame" x="0.0" y="180" width="600" height="240"/>
