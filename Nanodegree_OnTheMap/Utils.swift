@@ -17,25 +17,6 @@ class AnyObjectHelper{
     }
 }
 
-class ResourceHandler<T> : NSObject {
-    private let sender : T
-    private let releaseHandler : (T) -> Void
-    
-    init(sender: T, onReleaseHandler: (T) -> Void) {
-        self.sender = sender
-        releaseHandler = onReleaseHandler
-    }
-    
-    init (onStartHandler: () -> T, onReleaseHandler:(T) -> Void) {
-        sender = onStartHandler()
-        releaseHandler = onReleaseHandler
-    }
-    
-    deinit {
-        releaseHandler(sender)
-    }
-}
-
 class AutoSelectorCaller : NSObject{
     
     private let sender: AnyObject
