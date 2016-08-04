@@ -27,7 +27,7 @@ class TableUsersViewController: UsersViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier, forIndexPath: indexPath)
         
         let location = UserLocationData.getInstance().locations[indexPath.row]
-        cell.textLabel?.text = location.lastName + " " + location.firstName
+        cell.textLabel?.text = location.firstName + " " + location.lastName
         cell.detailTextLabel?.text = location.mediaURL
         // Show disclosuer for cell with a valid url
         if let url = NSURL(string: location.mediaURL) where url.scheme.characters.count > 0 && UIApplication.sharedApplication().canOpenURL(url) {

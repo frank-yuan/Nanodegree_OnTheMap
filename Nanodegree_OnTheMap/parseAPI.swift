@@ -17,7 +17,7 @@ class parseAPI: NSObject {
     }
     
     static func getStudentsLocation(completeHandler:(result:AnyObject? , error:NetworkError) -> Void) {
-        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["limit":100]) {
+        if let url = HttpServiceHelper.buildURL(ParseServiceConfig(), withPathExtension: "StudentLocation", queryItems: ["order":"-updatedAt"]) {
             let request = HttpRequest(url: url)
             request.addHeader([Constant.ParseApi.applicationIdKey: Constant.ParseApi.applicationIdValue,
                 Constant.ParseApi.apiKeyKey: Constant.ParseApi.apiKeyValue])
