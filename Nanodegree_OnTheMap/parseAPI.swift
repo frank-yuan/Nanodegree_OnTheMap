@@ -12,8 +12,8 @@ class parseAPI: NSObject {
     static let queryLimit = 100
     struct ParseServiceConfig : ServiceConfig {
         var ApiScheme: String { return "https" }
-        var ApiHost: String { return "api.parse.com" }
-        var ApiPath: String { return "/1/classes/" }
+        var ApiHost: String { return "parse.udacity.com" }
+        var ApiPath: String { return "/parse/classes/" }
     }
     
     static func getStudentsLocation(completeHandler:(result:AnyObject? , error:NetworkError) -> Void) {
