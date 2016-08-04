@@ -10,11 +10,14 @@ import UIKit
 
 class TableUsersViewController: UsersViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let tableViewCellIdentifier = "locationCell"
     
+    // MARK: IBOutlets
     @IBOutlet weak var tableView:UITableView!
 
-    // MARK: - Table view data source
+    // MARK: Constants
+    let tableViewCellIdentifier = "locationCell"
+    
+    // MARK: Table view data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserLocationData.getInstance().locations.count
     }
@@ -36,6 +39,7 @@ class TableUsersViewController: UsersViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    // MARK: - UITableViewDelegate implements
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let location = UserLocationData.getInstance().locations[indexPath.row]
@@ -55,6 +59,7 @@ class TableUsersViewController: UsersViewController, UITableViewDelegate, UITabl
         }
     }
     
+    // MARK: Superclass overrides
     override func onDataReloaded() {
         self.tableView.reloadData()
     }

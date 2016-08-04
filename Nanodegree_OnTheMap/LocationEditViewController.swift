@@ -28,6 +28,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     var objectId = ""
     private var localSearch:MKLocalSearch? = nil
     private var userLocation = CLLocationCoordinate2D()
+    private var locateDisabler : AutoSelectorCaller?
     
     
     // MARK: UIViewController overrides
@@ -49,7 +50,10 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
     @IBAction func onSearch() {
+        
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
         
         if locationTextField.text?.characters.count == 0 {
             showAlert("Type some thing to search", message: "", buttonText: "OK")
@@ -65,7 +69,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         
         localSearch = MKLocalSearch(request: request)
         localSearch!.startWithCompletionHandler(){ (response, error) in
-            
+            disableInteraction
             if let error = error {
                 self.onLocationNotFound(error)
             } else {
@@ -78,12 +82,18 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     
     @IBAction func onSubmit() {
         
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
+        
         if linkTextField.text?.characters.count == 0 {
             showAlert("Type your linkedin address", message: "", buttonText: "OK")
             return
         }
         
         udacityAPI.getUserData(UserLocationData.getInstance().userId){ (result, error) in
+            
+            
+            disableInteraction
+            
             guard let result = result where error == NetworkError.NoError else {
                 self.showAlert("Fail to submit.", message: "", buttonText: "OK")
                 return
@@ -100,6 +110,9 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
                 data["mediaURL"] = self.linkTextField.text!
             }
             parseAPI.postStudentLocation(data, objectId: self.objectId) { (result, error) in
+                
+                disableInteraction
+                
                 if (error != NetworkError.NoError)
                 {
                     self.showAlert("Fail to submit your location", message: "", buttonText: "OK")
@@ -111,6 +124,9 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     }
     
     @IBAction func onLocateMe() {
+        
+        locateDisabler  = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
+        
         if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .Denied{
             showAlert("Location services", message: "Location services are not enabled. Please enable location services in settings.", buttonText: "OK")
             return
@@ -118,10 +134,10 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         } else if CLLocationManager.authorizationStatus() == .NotDetermined{
             locationManager.requestWhenInUseAuthorization()
         }
+        
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()
         locationManager.startUpdatingLocation()
-        //configureUI(true)
     }
     
     // MARK: Delegate implementation of MKMapViewDelegate
@@ -133,7 +149,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.pinTintColor = UIColor.redColor()
+            pinView!.pinTintColor = UIColor.blueColor()
         }
         else {
             pinView!.annotation = annotation
@@ -144,14 +160,21 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     
     // MARK: Implement of CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if locations.count > 0 {
             let location = locations.last!
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+                
+                
                 if (error != nil || placemarks?.count == 0) {
-                    self.onLocationNotFound(error)
+                    if nil == self.locateDisabler {
+                        self.locateDisabler = nil
+                        self.onLocationNotFound(error)
+                    }
                     return
                 }
+                self.locateDisabler = nil
                 
                 self.configureMapView(location.coordinate)
                 self.configureUI(true)
@@ -159,7 +182,10 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
                 
             }
         } else {
-            onLocationNotFound(nil)
+            if locateDisabler != nil {
+                onLocationNotFound(nil)
+                locateDisabler = nil
+            }
         }
     }
     
@@ -194,8 +220,25 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     
     private func showAlert(title: String, message: String, buttonText: String) {
         
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: buttonText, style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonText, style: .Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func onBlock() {
+        view.userInteractionEnabled = false
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        view.addSubview(activityView)
+    }
+    
+    func onBlockEnd() {
+        view.userInteractionEnabled = true
+        if let activityView = view.subviews.last as? UIActivityIndicatorView {
+            activityView.stopAnimating()
+            activityView.removeFromSuperview()
+        }
     }
 }

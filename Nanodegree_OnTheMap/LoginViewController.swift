@@ -10,13 +10,16 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    // MARK: IBOutles
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
     
+    // MARK: Variables and constants
     var viewOriginY:CGFloat = 0
     let textFieldDelegate = TextFieldDelegate()
     
+    // MARK: UIViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,17 +41,16 @@ class LoginViewController: UIViewController {
         unsubscribeFromKeyboardNotifications()
     }
     
-    // MARK: IBAction
+    // MARK: IBActions
     @IBAction func onLogin() {
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(blockInteraction), releaseSelector: #selector(unblockInteraction))
         
         func displayError(errorTitle: String, errorMessage: String? = nil) {
-            self.setUIEnabled(true)
             let alertView = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alertView, animated: true, completion: nil)
         }
         
-        setUIEnabled(false)
         
         guard let email = textFieldEmail.text where email.characters.count > 0 else {
             displayError("Email cannot be empty")
@@ -61,6 +63,9 @@ class LoginViewController: UIViewController {
         }
         
         udacityAPI.authenticate(email, password:password) { (result, error) in
+            
+            disableInteraction
+            
             guard error == NetworkError.NoError else {
                 var errorMsg = ""
                 switch error {
@@ -92,7 +97,6 @@ class LoginViewController: UIViewController {
             
             UserLocationData.setUserId(userId)
             
-            self.setUIEnabled(true)
             
             self.onLoggedIn()
         }
@@ -102,6 +106,7 @@ class LoginViewController: UIViewController {
         UIApplication.sharedApplication().openURL(NSURL(string:"https://www.udacity.com/account/auth#!/signup")!)
     }
     
+    // MARK: Private methods
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -135,22 +140,21 @@ class LoginViewController: UIViewController {
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
-    private func setUIEnabled(enabled: Bool) {
-        textFieldPassword.enabled = enabled
-        textFieldEmail.enabled = enabled
-        buttonLogin.enabled = enabled
-        
-        if (!enabled) {
-            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-            activityView.center = view.center
-            view.addSubview(activityView)
-            activityView.startAnimating()
-        } else {
-            if let subview = view.subviews.last as? UIActivityIndicatorView {
-                subview.stopAnimating()
-                subview.removeFromSuperview()
-            }
+    func blockInteraction() {
+        buttonLogin.enabled = false
+        view.userInteractionEnabled = false
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityView.center = view.center
+        activityView.startAnimating()
+        view.addSubview(activityView)
+    }
+    
+    func unblockInteraction() {
+        buttonLogin.enabled = true
+        view.userInteractionEnabled = true
+        if let activityView = view.subviews.last as? UIActivityIndicatorView {
+            activityView.stopAnimating()
+            activityView.removeFromSuperview()
         }
-        
     }
 }

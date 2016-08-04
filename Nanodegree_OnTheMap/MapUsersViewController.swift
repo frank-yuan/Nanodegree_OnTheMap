@@ -11,22 +11,35 @@ import MapKit
 
 class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
 
+    // MARK: IBOutlets
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var busyOverlay : UIImageView!
     
+    // MARK: Variables
     var annotations = [MKPointAnnotation]()
     
+    // MARK: UIViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.showsUserLocation = true
 
         // Do any additional setup after loading the view.
     }
+    
+    // MARK: Superclass overrides
+    override func setUIEnabled(enabled: Bool) {
+        super.setUIEnabled(enabled)
+        mapView.userInteractionEnabled = enabled
+        busyOverlay.hidden = enabled
+    }
+    
     override func onDataReloaded() {
         
         super.onDataReloaded()
         
         self.mapView.removeAnnotations(annotations)
+        
+        annotations.removeAll()
         
         let locations = UserLocationData.getInstance().locations
         
@@ -52,6 +65,7 @@ class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
         self.mapView.addAnnotations(annotations)
     }
     
+    // MARK: MKMapViewDelegate implements
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -72,8 +86,6 @@ class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
     }
     
     
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
@@ -83,11 +95,6 @@ class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
         }
     }
     
-    override func setUIEnabled(enabled: Bool) {
-        super.setUIEnabled(enabled)
-        mapView.userInteractionEnabled = enabled
-        busyOverlay.hidden = enabled
-    }
 
 }
 

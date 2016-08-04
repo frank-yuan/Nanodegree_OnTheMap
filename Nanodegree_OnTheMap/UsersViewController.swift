@@ -10,9 +10,13 @@ import UIKit
 
 class UsersViewController: UIViewController {
     
+    
+    // MARK: Fields
     let locationEditViewSegue = "showLocationEditView"
     var objectId = ""
+    var activityIndicatorView : UIActivityIndicatorView?
 
+    // MARK: UIViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +28,6 @@ class UsersViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(named: "pin"), style: .Plain, target: self, action: #selector(UsersViewController.pinMyLocation)))
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,54 +47,52 @@ class UsersViewController: UIViewController {
                 vc.objectId = objectId
             }
         }
-        
     }
     
+    // MARK: Virtual Methods
     func setUIEnabled(enabled: Bool) {
+        
         self.navigationItem.leftBarButtonItem?.enabled = enabled
+        
         for item in self.navigationItem.rightBarButtonItems! {
             item.enabled = enabled
         }
         
         tabBarController?.view.userInteractionEnabled = enabled
-
-        
-        if (!enabled) {
-            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-            activityView.center = view.center
-            view.addSubview(activityView)
-            activityView.startAnimating()
-        } else {
-            if let subview = view.subviews.last as? UIActivityIndicatorView {
-                subview.stopAnimating()
-                subview.removeFromSuperview()
-            }
-        }
     }
     
     func onDataReloaded() {
-        
     }
 
     
-    func logOut() {
-        setUIEnabled(false)
+    // MARK: Private Methods
+    final func logOut() {
+        
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(blockInteraction), releaseSelector: #selector(unblockInteraction))
+        
         udacityAPI.logout() { (result, error) in
+            
             performUIUpdatesOnMain(){
+                
+                disableInteraction
+                
                 if error != NetworkError.NoError {
                     self.showAlert("Logout with error!", message: "", completionHandler: nil)
                 }
                 UserLocationData.reset()
                 self.dismissViewControllerAnimated(true, completion: nil)
-                self.setUIEnabled(true)
             }
         }
     }
     
-    func reloadData() {
-        setUIEnabled(false)
+    final func reloadData() {
+        
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(blockInteraction), releaseSelector: #selector(unblockInteraction))
+        
         // retrieve locations from server
         parseAPI.getStudentsLocation(){ (result, error) in
+            
+            disableInteraction
             
             if let result = result , resultArray = result["results"] as? [AnyObject] {
                 
@@ -103,39 +104,37 @@ class UsersViewController: UIViewController {
                 
                 performUIUpdatesOnMain({
                     self.onDataReloaded()
-                    self.setUIEnabled(true)
                 })
             }
             else
             {
-                self.setUIEnabled(true)
                 self.showAlert("Loading parse data fail!", message: "", completionHandler: nil)
             }
         }
     }
 
-    func pinMyLocation() {
-        setUIEnabled(false)
+    final func pinMyLocation() {
+        
+        let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(blockInteraction), releaseSelector: #selector(unblockInteraction))
+        
         parseAPI.getStudentLocation(UserLocationData.getInstance().userId) { (result, error) in
+            
+            disableInteraction
+            
             if let results = result!["results"] as? [AnyObject] where results.count > 0 {
-                let alertView = UIAlertController(title: "Already set your location", message: "You have set your location before, do you want to override?", preferredStyle: UIAlertControllerStyle.Alert)
+                let alertView = UIAlertController(title: "Already set your location", message: "You have set your location before, do you want to overwrite?", preferredStyle: UIAlertControllerStyle.Alert)
                 alertView.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-                alertView.addAction(UIAlertAction(title: "Overrite", style: UIAlertActionStyle.Default) {(action) -> Void in
-                    let objectId = AnyObjectHelper.parseData(results[0], name: "objectId", defaultValue: "")
-                    self.pushLocationEditView(objectId)
+                alertView.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default) {(action) -> Void in
+                    self.objectId = AnyObjectHelper.parseData(results[0], name: "objectId", defaultValue: "")
+                    self.performSegueWithIdentifier(self.locationEditViewSegue, sender: self)
                     })
                 self.presentViewController(alertView, animated: true, completion: nil)
 
             } else {
-                self.pushLocationEditView("")
+                self.objectId = ""
+                self.performSegueWithIdentifier(self.locationEditViewSegue, sender: self)
             }
-            self.setUIEnabled(true)
         }
-    }
-    
-    func pushLocationEditView(objectId:String) {
-        self.objectId = objectId
-        performSegueWithIdentifier(locationEditViewSegue, sender: self)
     }
     
     func showAlert(title: String, message: String, completionHandler: (()->Void)? ) {
@@ -143,14 +142,24 @@ class UsersViewController: UIViewController {
         alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alertView, animated: true, completion: completionHandler)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    final func blockInteraction() {
+        setUIEnabled(false)
+        view.userInteractionEnabled = false
+        activityIndicatorView  = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicatorView!.center = self.view.center
+        activityIndicatorView!.startAnimating()
+        view.addSubview(activityIndicatorView!)
     }
-    */
+    
+    final func unblockInteraction() {
+        setUIEnabled(true)
+        view.userInteractionEnabled = true
+        if nil != activityIndicatorView {
+            activityIndicatorView!.stopAnimating()
+            activityIndicatorView!.removeFromSuperview()
+        }
+        activityIndicatorView = nil
+    }
 
 }
