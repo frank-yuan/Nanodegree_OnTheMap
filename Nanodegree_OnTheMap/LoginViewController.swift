@@ -45,20 +45,14 @@ class LoginViewController: UIViewController {
     @IBAction func onLogin() {
         let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(blockInteraction), releaseSelector: #selector(unblockInteraction))
         
-        func displayError(errorTitle: String, errorMessage: String? = nil) {
-            let alertView = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertView, animated: true, completion: nil)
-        }
-        
         
         guard let email = textFieldEmail.text where email.characters.count > 0 else {
-            displayError("Email cannot be empty")
+            showAlert("Email cannot be empty")
             return
         }
         
         guard let password = textFieldPassword.text where password.characters.count > 0 else {
-            displayError("Password cannot be empty")
+            showAlert("Password cannot be empty")
             return
         }
         
@@ -76,22 +70,22 @@ class LoginViewController: UIViewController {
                 default:
                     errorMsg = "Network error."
                 }
-                displayError(errorMsg)
+                self.showAlert(errorMsg)
                 return
             }
             
             guard let account = result!["account"] else {
-                displayError("Cannot found account in result")
+                self.showAlert("Cannot found account in result")
                 return
             }
             
             guard let registered = account!["registered"] as? Bool where registered else {
-                displayError("Unknown error")
+                self.showAlert("Unknown error")
                 return
             }
             
             guard let userId = account!["key"] as? String else {
-                displayError("Cannot find user Id")
+                self.showAlert("Cannot find user Id")
                 return
             }
             

@@ -19,4 +19,31 @@ struct Constant {
         static let contentTypeValue = "application/json"
     }
     
+    struct UdacityStudentKey {
+        
+        static let uniqueKey = "key"
+        static let firstNameKey = "first_name"
+        static let lastNameKey = "last_name"
+    }
+    
+    struct ParseDataKey {
+       static let uniqueKey  = "uniqueKey"
+       static let firstName  = "firstName"
+       static let lastName   = "lastName" 
+       static let latitude   = "latitude" 
+       static let longitude  = "longitude"
+       static let mapString  = "mapString"
+       static let mediaURL   = "mediaURL" 
+    }   
+    
+    struct UserLocationDataKey {
+        
+            static let firstName = "firstName"
+            static let lastName = "lastName"
+            static let mediaURL = "mediaURL"
+            static let mapString = "mapString" 
+            static let latitude = "latitude" 
+            static let longitude = "longitude" 
+    }
+    
 }

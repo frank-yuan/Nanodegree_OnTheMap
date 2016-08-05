@@ -16,12 +16,12 @@ struct UserLocationData {
         let latitude:Double
         let longitude:Double
         init(object:AnyObject) {
-            firstName = object["firstName"] as! String
-            lastName = object["lastName"] as! String
-            mediaURL = object["mediaURL"] as! String
-            mapString = object["mapString"] as! String
-            latitude = object["latitude"] as! Double
-            longitude = object["longitude"] as! Double
+            firstName = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.firstName, defaultValue: "")
+            lastName = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.lastName, defaultValue: "")
+            mediaURL = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.mediaURL, defaultValue: "")
+            mapString = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.mapString, defaultValue: "")
+            latitude = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.latitude, defaultValue: 0.0)
+            longitude = AnyObjectHelper.parseData(object, name: Constant.UserLocationDataKey.longitude, defaultValue: 0.0)
         }
     }
     

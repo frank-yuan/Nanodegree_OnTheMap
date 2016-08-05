@@ -37,3 +37,14 @@ class AutoSelectorCaller : NSObject{
         sender.performSelectorOnMainThread(releaseSelector, withObject: nil, waitUntilDone: false)
     }
 }
+
+
+extension UIViewController {
+
+    func showAlert(title: String, buttonText: String = "OK",  message: String = "", completionHandler: (()->Void)? = nil ) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonText, style: .Default, handler: nil))
+        presentViewController(alert, animated: true, completion: completionHandler)
+    }
+}

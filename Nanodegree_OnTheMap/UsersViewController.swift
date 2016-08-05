@@ -77,7 +77,7 @@ class UsersViewController: UIViewController {
                 disableInteraction
                 
                 if error != NetworkError.NoError {
-                    self.showAlert("Logout with error!", message: "", completionHandler: nil)
+                    self.showAlert("Logout with error!")
                 }
                 UserLocationData.reset()
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -108,7 +108,7 @@ class UsersViewController: UIViewController {
             }
             else
             {
-                self.showAlert("Loading parse data fail!", message: "", completionHandler: nil)
+                self.showAlert("Loading parse data fail!")
             }
         }
     }
@@ -135,12 +135,6 @@ class UsersViewController: UIViewController {
                 self.performSegueWithIdentifier(self.locationEditViewSegue, sender: self)
             }
         }
-    }
-    
-    func showAlert(title: String, message: String, completionHandler: (()->Void)? ) {
-        let alertView = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: completionHandler)
     }
     
     final func blockInteraction() {

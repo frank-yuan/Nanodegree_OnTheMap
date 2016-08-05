@@ -47,7 +47,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     
     // MARK: IBActions
     @IBAction func onCancel() {
-        dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -56,7 +56,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
         
         if locationTextField.text?.characters.count == 0 {
-            showAlert("Type some thing to search", message: "", buttonText: "OK")
+            showAlert("Type some thing to search")
             return
         }
         
@@ -85,7 +85,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         let disableInteraction = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
         
         if linkTextField.text?.characters.count == 0 {
-            showAlert("Type your linkedin address", message: "", buttonText: "OK")
+            showAlert("Type your linkedin address")
             return
         }
         
@@ -95,19 +95,19 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
             disableInteraction
             
             guard let result = result where error == NetworkError.NoError else {
-                self.showAlert("Fail to submit.", message: "", buttonText: "OK")
+                self.showAlert("Fail to submit.", buttonText: "OK")
                 return
             }
             
             var data = [String:AnyObject]()
             if let user = result["user"]{
-                data["uniqueKey"] = AnyObjectHelper.parseData(user, name: "key", defaultValue: "");
-                data["firstName"] = AnyObjectHelper.parseData(user, name: "first_name", defaultValue: "");
-                data["lastName"] = AnyObjectHelper.parseData(user, name: "last_name", defaultValue: "");
-                data["latitude"] = self.userLocation.latitude
-                data["longitude"] = self.userLocation.longitude
-                data["mapString"] = self.locationTextField.text!
-                data["mediaURL"] = self.linkTextField.text!
+                data[Constant.ParseDataKey.uniqueKey] = AnyObjectHelper.parseData(user, name: "key", defaultValue: "");
+                data[Constant.ParseDataKey.firstName] = AnyObjectHelper.parseData(user, name: "first_name", defaultValue: "");
+                data[Constant.ParseDataKey.lastName] = AnyObjectHelper.parseData(user, name: "last_name", defaultValue: "");
+                data[Constant.ParseDataKey.latitude] = self.userLocation.latitude
+                data[Constant.ParseDataKey.longitude] = self.userLocation.longitude
+                data[Constant.ParseDataKey.mapString] = self.locationTextField.text!
+                data[Constant.ParseDataKey.mediaURL] = self.linkTextField.text!
             }
             parseAPI.postStudentLocation(data, objectId: self.objectId) { (result, error) in
                 
@@ -115,7 +115,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
                 
                 if (error != NetworkError.NoError)
                 {
-                    self.showAlert("Fail to submit your location", message: "", buttonText: "OK")
+                    self.showAlert("Fail to submit your location", buttonText: "OK")
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
@@ -128,7 +128,7 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
         locateDisabler  = AutoSelectorCaller(sender: self, startSelector: #selector(onBlock), releaseSelector: #selector(onBlockEnd))
         
         if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .Denied{
-            showAlert("Location services", message: "Location services are not enabled. Please enable location services in settings.", buttonText: "OK")
+            showAlert("Location services", buttonText: "OK", message: "Location services are not enabled. Please enable location services in settings.")
             return
             
         } else if CLLocationManager.authorizationStatus() == .NotDetermined{
@@ -215,16 +215,9 @@ class LocationEditViewController: UIViewController , CLLocationManagerDelegate, 
     }
     
     private func onLocationNotFound(error:NSError?) {
-        showAlert("Could not find places", message: error == nil ? "" : error!.userInfo.description, buttonText: "OK")
+        showAlert("Could not find places", buttonText: "OK", message: error == nil ? "" : error!.userInfo.description)
     }
-    
-    private func showAlert(title: String, message: String, buttonText: String) {
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: buttonText, style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
+
     
     func onBlock() {
         view.userInteractionEnabled = false

@@ -91,6 +91,8 @@ class MapUsersViewController: UsersViewController,  MKMapViewDelegate{
             let app = UIApplication.sharedApplication()
             if let toOpen = view.annotation?.subtitle!, url = NSURL(string: toOpen) where app.canOpenURL(url) {
                 app.openURL(url)
+            } else {
+                showAlert("Invalid URL", buttonText: "OK", message: "The URL provided is invalid")
             }
         }
     }

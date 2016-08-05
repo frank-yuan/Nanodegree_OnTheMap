@@ -436,7 +436,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Nanodegree_OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kabam.manweibattle.tc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frank.onthemap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -448,7 +448,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Nanodegree_OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kabam.manweibattle.tc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frank.onthemap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

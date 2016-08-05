@@ -49,9 +49,7 @@ class TableUsersViewController: UsersViewController, UITableViewDelegate, UITabl
             application.openURL(url)
 
         } else {
-            let alert = UIAlertController(title: "Invalid URL", message: "The URL provided is invalid", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            showAlert("Invalid URL", buttonText: "OK", message: "The URL provided is invalid")
         }
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
